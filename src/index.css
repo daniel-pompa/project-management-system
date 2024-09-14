@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/Roboto-Regular.woff2') format('woff2'),
+    url('./assets/Roboto-Regular.woff') format('woff'),
+    url('./assets/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Roboto', Inter, system-ui, Arial, sans-serif;
+}
