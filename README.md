@@ -84,7 +84,9 @@ cd project-management-system
 npm install
 ```
 
-4. **Run the development server:**
+4. Create an `.env` file in the root of the project and set the necessary environment variables. You can use the `.env.template` file as a reference.
+
+5. **Run the development server:**
 
 ```bash
 npm run dev
