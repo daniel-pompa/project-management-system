@@ -1,17 +1,10 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { ProjectFormData } from '@/types';
 import { ErrorMessage } from '@/components';
 
 type ProjectFormProps = {
-  register: UseFormRegister<{
-    name: string;
-    client: string;
-    description: string;
-  }>;
-  errors: FieldErrors<{
-    name: string;
-    client: string;
-    description: string;
-  }>;
+  register: UseFormRegister<ProjectFormData>;
+  errors: FieldErrors<ProjectFormData>;
 };
 
 export const ProjectForm = ({ register, errors }: ProjectFormProps) => {
@@ -53,7 +46,7 @@ export const ProjectForm = ({ register, errors }: ProjectFormProps) => {
         </label>
         <textarea
           id='description'
-          className='w-full p-3  border border-gray-200 rounded'
+          className='w-full p-3 border border-gray-200 rounded'
           placeholder='Descripción del proyecto'
           {...register('description', {
             required: 'La descripción del proyecto es obligatoria',
