@@ -6,7 +6,7 @@ import { ProjectFormData } from '@/types';
 import { ProjectForm } from '@/components';
 import { createProject } from '@/api';
 
-export const NewProjectView = () => {
+export const CreateProjectView = () => {
   const navigate = useNavigate();
 
   const initialValues: ProjectFormData = {

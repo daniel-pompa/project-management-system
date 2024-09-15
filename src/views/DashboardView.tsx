@@ -67,7 +67,10 @@ export const DashboardView = () => {
                         </Link>
                       </MenuItem>
                       <MenuItem>
-                        <Link to={''} className='block px-3 py-1 text-sm leading-6'>
+                        <Link
+                          to={`/projects/${project._id}/edit`}
+                          className='block px-3 py-1 text-sm leading-6'
+                        >
                           Editar proyecto
                         </Link>
                       </MenuItem>

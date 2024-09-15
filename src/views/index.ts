@@ -1,2 +1,3 @@
 export * from './DashboardView';
-export * from './NewProjectView';
+export * from './projects/CreateProjectView';
+export * from './projects/EditProjectView';
