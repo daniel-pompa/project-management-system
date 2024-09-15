@@ -1,3 +1,19 @@
+import { Navigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { EditProjectForm, Spinner } from '@/components';
+import { getProjectById } from '@/api';
+
 export const EditProjectView = () => {
-  return <h1 className='text-xl md:text-3xl font-bold'>Editar proyecto</h1>;
+  const params = useParams();
+  const projectId = params.projectId!;
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['editProject', projectId],
+    queryFn: () => getProjectById(projectId),
+    retry: false,
+  });
+
+  if (isLoading) return <Spinner />;
+  if (isError) return <Navigate to='/404-not-found' />;
+  if (data) return <EditProjectForm data={data} projectId={projectId} />;
 };
