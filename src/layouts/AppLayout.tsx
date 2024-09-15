@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Logo, NavMenu } from '@/components';
 
 export const AppLayout = () => {
@@ -20,6 +22,7 @@ export const AppLayout = () => {
           &copy; {new Date().getFullYear()} - Daniel Pompa Pareja
         </p>
       </footer>
+      <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
     </div>
   );
 };
