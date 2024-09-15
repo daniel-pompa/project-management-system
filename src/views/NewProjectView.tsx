@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ProjectFormData } from '@/types';
 import { ProjectForm } from '@/components/projects';
+import { createProject } from '@/api';
 
 export const NewProjectView = () => {
   const initialValues: ProjectFormData = {
@@ -17,7 +18,7 @@ export const NewProjectView = () => {
   } = useForm({ defaultValues: initialValues });
 
   const onSubmit = (data: ProjectFormData) => {
-    console.log(data);
+    createProject(data);
   };
 
   return (
