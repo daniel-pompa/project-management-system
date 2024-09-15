@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { ProjectFormData } from '@/types';
-import { ProjectForm } from '@/components/projects';
+import { ProjectForm } from '@/components';
 import { createProject } from '@/api';
 
 export const NewProjectView = () => {
@@ -65,7 +65,7 @@ export const NewProjectView = () => {
           <input
             type='submit'
             value='Crear proyecto'
-            className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer'
+            className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
           />
         </form>
       </div>
