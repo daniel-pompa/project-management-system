@@ -56,7 +56,9 @@ export const DashboardView = () => {
                 className='flex justify-between items-center bg-white p-4 rounded shadow-md '
               >
                 <div className='space-y-2 w-full h-full'>
-                  <h2 className='text-xl font-bold'>{project.name}</h2>
+                  <Link to={`/projects/${project._id}`} className='text-xl font-bold'>
+                    {project.name}
+                  </Link>
                   <p className='text-slate-500 font-bold'>Cliente: {project.client}</p>
                   <p className='text-slate-500'>{project.description}</p>
                 </div>
@@ -76,7 +78,10 @@ export const DashboardView = () => {
                   >
                     <MenuItems className='absolute top-4 right-0 z-10 mt-2 w-56 rounded bg-white py-2 shadow-md ring-1 ring-gray-900/5 focus:outline-none'>
                       <MenuItem>
-                        <Link to={''} className='block px-3 py-1 text-sm leading-6'>
+                        <Link
+                          to={`/projects/${project._id}`}
+                          className='block px-3 py-1 text-sm leading-6'
+                        >
                           Ver proyecto
                         </Link>
                       </MenuItem>

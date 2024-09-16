@@ -14,6 +14,6 @@ export const EditProjectView = () => {
   });
 
   if (isLoading) return <Spinner />;
-  if (isError) return <Navigate to='/404-not-found' />;
+  if (isError) return <Navigate to='/404' />;
   if (data) return <EditProjectForm data={data} projectId={projectId} />;
 };
