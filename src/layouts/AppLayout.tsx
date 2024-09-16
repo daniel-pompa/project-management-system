@@ -22,7 +22,11 @@ export const AppLayout = () => {
           &copy; {new Date().getFullYear()} - Daniel Pompa Pareja
         </p>
       </footer>
-      <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
+      <ToastContainer
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        toastClassName='text-sm'
+      />
     </div>
   );
 };
