@@ -2,14 +2,28 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '@/api';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
+import { deleteProject, getProjects } from '@/api';
 import { Spinner } from '@/components';
+import { toast } from 'react-toastify';
 
 export const DashboardView = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
+  });
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteProject,
+    onSuccess: data => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['projects'] });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
   });
 
   if (isLoading) return <Spinner />;
@@ -43,7 +57,7 @@ export const DashboardView = () => {
               >
                 <div className='space-y-2 w-full h-full'>
                   <h2 className='text-xl font-bold'>{project.name}</h2>
-                  <p className='text-slate-500 font-bold'>{project.client}</p>
+                  <p className='text-slate-500 font-bold'>Cliente: {project.client}</p>
                   <p className='text-slate-500'>{project.description}</p>
                 </div>
                 {/* Menu buttons container */}
@@ -78,7 +92,7 @@ export const DashboardView = () => {
                         <button
                           type='button'
                           className='block px-3 py-1 text-sm leading-6 text-red-600'
-                          onClick={() => {}}
+                          onClick={() => mutate(project._id)}
                         >
                           Eliminar proyecto
                         </button>

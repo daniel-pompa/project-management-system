@@ -41,14 +41,20 @@ type ProjectApiType = {
   projectId: Project['_id'];
 };
 
-interface ApiResponse<T> {
-  message: string;
-  data: T;
-}
-
 export const updateProject = async ({ formData, projectId }: ProjectApiType) => {
   try {
-    const { data } = await api.put<ApiResponse<Project>>(`/projects/${projectId}`, formData);
+    const { data } = await api.put(`/projects/${projectId}`, formData);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error);
+    }
+  }
+};
+
+export const deleteProject = async (id: Project['_id']) => {
+  try {
+    const { data } = await api.delete(`/projects/${id}`);
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
