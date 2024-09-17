@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import {
   Dialog,
   DialogPanel,
@@ -10,13 +11,20 @@ import {
 } from '@headlessui/react';
 import { TaskFormData } from '@/types';
 import { TaskForm } from '@/components';
+import { createTask } from '@/api/task-api';
+import { toast } from 'react-toastify';
 
 export const AddTaskModal = () => {
   const navigate = useNavigate();
+  /** Modal exists in URL */
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const modalTask = queryParams.get('new-task');
   const show = modalTask ? true : false;
+
+  /** Gets project id from URL */
+  const params = useParams();
+  const projectId = params.projectId!;
 
   const initialValues: TaskFormData = {
     name: '',
@@ -26,11 +34,28 @@ export const AddTaskModal = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<TaskFormData>({ defaultValues: initialValues });
 
+  const { mutate } = useMutation({
+    mutationFn: createTask,
+    onSuccess: data => {
+      toast.success(data.message);
+      reset();
+      navigate(location.pathname, { replace: true });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
   const onSubmit = (formData: TaskFormData) => {
-    console.log(formData);
+    const data = {
+      formData,
+      projectId,
+    };
+    mutate(data);
   };
 
   return (
