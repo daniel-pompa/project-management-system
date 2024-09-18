@@ -1,6 +1,6 @@
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { AddTaskModal, Spinner } from '@/components';
+import { AddTaskModal, Spinner, TaskList } from '@/components';
 import { getProjectById } from '@/api';
 
 export const ProjectDetailsView = () => {
@@ -34,19 +34,8 @@ export const ProjectDetailsView = () => {
             </button>
           </nav>
         </div>
-
+        <TaskList tasks={data.tasks} />
         <AddTaskModal />
-
-        {/* <h1 className='text-xl md:text-3xl font-bold'>{data.name}</h1>
-        <p className='md:text-xl text-slate-600 mt-5'>{data.description}</p>
-        <nav className='my-5 flex gap-3'>
-          <button
-            type='button'
-            className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-1 rounded transition-colors'
-          >
-            Crear tarea
-          </button>
-        </nav> */}
       </>
     );
 };

@@ -5,4 +5,6 @@ export * from './projects/EditProjectForm';
 export * from './projects/ProjectForm';
 export * from './Spinner/Spinner';
 export * from './tasks/AddTaskModal';
+export * from './tasks/TaskCard';
 export * from './tasks/TaskForm';
+export * from './tasks/TaskList';

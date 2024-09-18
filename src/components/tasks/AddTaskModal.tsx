@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Dialog,
   DialogPanel,
@@ -38,9 +38,12 @@ export const AddTaskModal = () => {
     formState: { errors },
   } = useForm<TaskFormData>({ defaultValues: initialValues });
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: createTask,
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ['editProject', projectId] });
       toast.success(data.message);
       reset();
       navigate(location.pathname, { replace: true });
