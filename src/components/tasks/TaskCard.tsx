@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { Task } from '@/types';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
@@ -8,17 +9,23 @@ type TaskCardProps = {
 };
 
 export const TaskCard = ({ task }: TaskCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <li className='p-5 bg-white border border-slate-200 rounded flex justify-between'>
       <div className='min-w-0 flex flex-col gap-y-2'>
-        <button type='button' className='text-slate-600 font-bold text-left'>
+        <Link
+          to={`${location.pathname}?edit-task=${task._id}`}
+          className='text-slate-600 font-bold text-left'
+        >
           {task.name}
-        </button>
+        </Link>
         <p className='text-slate-500'>{task.description}</p>
       </div>
       <div className='flex shrink-0 gap-x-6'>
         <Menu as='div' className='relative'>
           <MenuButton className='-m-2.5 block p-2.5 text-slate-500 hover:text-slate-900'>
+            <span className='sr-only'>opciones</span>
             <BiDotsVerticalRounded className='h-6 w-6' />
           </MenuButton>
           <Transition
@@ -43,6 +50,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
                 <button
                   type='button'
                   className='block px-3 py-1 text-sm leading-6 text-slate-900'
+                  onClick={() => navigate(`${location.pathname}?edit-task=${task._id}`)}
                 >
                   Editar Tarea
                 </button>
