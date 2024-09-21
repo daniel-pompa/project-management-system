@@ -36,12 +36,12 @@ export const TaskCard = ({ task }: TaskCardProps) => {
     <li className='p-5 bg-white border border-slate-200 rounded flex justify-between'>
       <div className='min-w-0 flex flex-col gap-y-2'>
         <Link
-          to={`${location.pathname}?edit-task=${task._id}`}
+          to={`${location.pathname}?view-task=${task._id}`}
           className='text-slate-600 font-bold text-left'
         >
           {task.name}
         </Link>
-        <p className='text-slate-500'>{task.description}</p>
+        <p className='text-slate-500 truncate'>{task.description}</p>
       </div>
       <div className='flex shrink-0 gap-x-6'>
         <Menu as='div' className='relative'>
@@ -63,6 +63,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
                 <button
                   type='button'
                   className='block px-3 py-1 text-sm leading-6 text-slate-900'
+                  onClick={() => navigate(`${location.pathname}?view-task=${task._id}`)}
                 >
                   Ver Tarea
                 </button>
