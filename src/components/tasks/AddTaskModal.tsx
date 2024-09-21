@@ -43,8 +43,8 @@ export const AddTaskModal = () => {
   const { mutate } = useMutation({
     mutationFn: createTask,
     onSuccess: data => {
-      queryClient.invalidateQueries({ queryKey: ['editProject', projectId] });
       toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['project', projectId] });
       reset();
       navigate(location.pathname, { replace: true });
     },
@@ -92,7 +92,7 @@ export const AddTaskModal = () => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <DialogPanel className='lg:w-1/3 transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
+                <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
                   <DialogTitle as='h2' className='text-xl md:text-3xl font-bold my-2'>
                     Nueva Tarea
                   </DialogTitle>

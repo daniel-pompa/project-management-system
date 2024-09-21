@@ -1,8 +1,11 @@
 import { Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
-import { Task } from '@/types';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { toast } from 'react-toastify';
+import { Task } from '@/types';
+import { deleteTask } from '@/api/task-api';
 
 type TaskCardProps = {
   task: Task;
@@ -10,6 +13,24 @@ type TaskCardProps = {
 
 export const TaskCard = ({ task }: TaskCardProps) => {
   const navigate = useNavigate();
+
+  /** Get the project ID from the URL */
+  const params = useParams();
+  const projectId = params.projectId!;
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteTask,
+    onSuccess: data => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['project', projectId] });
+      queryClient.invalidateQueries({ queryKey: ['task'] });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
 
   return (
     <li className='p-5 bg-white border border-slate-200 rounded flex justify-between'>
@@ -59,6 +80,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
                 <button
                   type='button'
                   className='block px-3 py-1 text-sm leading-6 text-red-600'
+                  onClick={() => mutate({ projectId, taskId: task._id })}
                 >
                   Eliminar Tarea
                 </button>

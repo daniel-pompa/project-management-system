@@ -57,7 +57,7 @@ export const CreateProjectView = () => {
         </div>
 
         <form
-          className='mt-10 p-10 bg-white shadow-md rounded'
+          className='mt-10 p-5 md:p-10 bg-white shadow-md rounded'
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
