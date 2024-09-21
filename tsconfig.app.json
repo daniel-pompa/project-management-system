@@ -16,7 +16,8 @@
       "@/layouts/*": ["src/layouts/*"],
       "@/views/*": ["src/views/*"],
       "@/types/*": ["src/types/*"],
-      "@/utils/*": ["src/utils/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/locales/*": ["src/locales/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
