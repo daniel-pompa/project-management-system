@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from 'react';
+import { ChangeEvent, Fragment, useEffect, useState } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import {
   Dialog,
   Transition,
@@ -9,8 +9,10 @@ import {
   DialogTitle,
 } from '@headlessui/react';
 import { toast } from 'react-toastify';
-import { getTaskById } from '@/api/task-api';
+import { TaskStatus } from '@/types';
+import { getTaskById, updateStatus } from '@/api/task-api';
 import { formatDate } from '@/utils/utils';
+import { statusTranslations } from '@/locales/es';
 
 export const TaskDetailsModal = () => {
   const [redirect, setRedirect] = useState(false);
@@ -31,6 +33,27 @@ export const TaskDetailsModal = () => {
     enabled: !!taskId, // Enable the query only if taskId is truthy
     retry: false,
   });
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateStatus,
+    onSuccess: data => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['project', projectId] });
+      queryClient.invalidateQueries({ queryKey: ['task', taskId] });
+      navigate(location.pathname, { replace: true });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  const handleStatusChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value as TaskStatus;
+    const data = { projectId, taskId, status };
+    mutate(data);
+  };
 
   useEffect(() => {
     if (isError) {
@@ -87,7 +110,21 @@ export const TaskDetailsModal = () => {
                     </DialogTitle>
                     <p className='text-slate-500 mb-2'>{data.description}</p>
                     <div className='my-5 space-y-3'>
-                      <label className='font-bold'>Estado actual</label>
+                      <label htmlFor='status' className='font-bold'>
+                        Estado actual
+                      </label>
+                      <select
+                        id='status'
+                        className='w-full p-3 border border-slate-200 rounded'
+                        defaultValue={data.status}
+                        onChange={handleStatusChange}
+                      >
+                        {Object.entries(statusTranslations).map(([key, value]) => (
+                          <option key={key} value={key}>
+                            {value}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </DialogPanel>
                 </TransitionChild>
