@@ -8,7 +8,7 @@ export const AppLayout = () => {
     <div className='flex flex-col min-h-screen w-full'>
       <header className='bg-slate-800 py-2'>
         <div className='text-white max-w-screen-2xl mx-auto p-2 flex flex-col md:flex-row justify-between items-center w-full'>
-          <div className='flex justify-center'>
+          <div className='flex justify-center md:me-6'>
             <Link to='/'>
               <Logo />
             </Link>

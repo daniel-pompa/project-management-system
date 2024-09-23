@@ -7,20 +7,20 @@ export const NavMenu = () => {
       <Menu>
         <div className='flex space-x-4'>
           <MenuItem>
-            <Link to='/profile' className='block hover:text-cyan-400'>
+            <Link to='/profile' className='block md:text-xl hover:text-cyan-400'>
               Perfil
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to='/' className='block hover:text-cyan-400'>
+            <Link to='/' className='block md:text-xl hover:text-cyan-400'>
               Proyectos
             </Link>
           </MenuItem>
         </div>
         <div className='flex space-x-3 ms-4 md:ms-0'>
-          <p>Hola, Daniel</p>
+          <p className='md:text-xl'>Hola, Daniel</p>
           <MenuButton className='hover:text-cyan-400'>
-            <BiLogOutCircle className='h-6 w-6' />
+            <BiLogOutCircle className='h-6 w-6 md:w-7 md:h-7' />
           </MenuButton>
         </div>
       </Menu>
