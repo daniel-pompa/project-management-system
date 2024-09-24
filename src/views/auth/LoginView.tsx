@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { UserLoginCredentials } from '@/types';
 import { ErrorMessage } from '@/components';
@@ -25,7 +26,9 @@ export const LoginView = () => {
         noValidate
       >
         <div className='flex flex-col gap-3'>
-          <label className='md:text-xl'>Correo electrónico</label>
+          <label htmlFor='email' className='font-bold'>
+            Correo electrónico
+          </label>
           <input
             id='email'
             type='email'
@@ -42,13 +45,16 @@ export const LoginView = () => {
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
         <div className='flex flex-col gap-3'>
-          <label className='md:text-xl'>Contraseña</label>
+          <label htmlFor='password' className='font-bold'>
+            Contraseña
+          </label>
           <input
+            id='password'
             type='password'
             placeholder='********'
-            className='w-full p-2 border-slate-200 border rounded mb-4'
+            className='w-full p-2 border-slate-200 border rounded'
             {...register('password', {
-              required: 'El Password es obligatorio',
+              required: 'La contraseña es obligatoria',
             })}
           />
           {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
@@ -60,9 +66,12 @@ export const LoginView = () => {
           className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
         />
       </form>
-      <p className='text-center text-white mt-10'>
-        ¿Aún no tienes tu cuenta de Daem? Crea tu cuenta
-      </p>
+      <nav className='text-sm md:text-lg text-center text-slate-300 mt-10'>
+        ¿Aún no tienes tu cuenta de Daem?{' '}
+        <Link to={'/auth/register'} className='text-cyan-500'>
+          Crea tu cuenta
+        </Link>
+      </nav>
     </>
   );
 };

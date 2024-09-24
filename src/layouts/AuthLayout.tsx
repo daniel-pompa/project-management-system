@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 export const AuthLayout = () => {
   return (
     <>
-      <div className='flex items-center justify-center min-h-screen bg-slate-800'>
+      <div className='flex items-center justify-center min-h-screen bg-slate-800 py-5'>
         <div className='w-full max-w-xl mx-auto'>
           <div className='flex flex-col items-center'>
             <Logo />

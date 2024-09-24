@@ -6,6 +6,7 @@ import {
   EditProjectView,
   LoginView,
   ProjectDetailsView,
+  RegisterView,
 } from '@/views';
 
 export default function Router() {
@@ -20,6 +21,7 @@ export default function Router() {
         </Route>
         <Route element={<AuthLayout />}>
           <Route path='/auth/login' element={<LoginView />} />
+          <Route path='/auth/register' element={<RegisterView />} />
         </Route>
       </Routes>
     </BrowserRouter>
