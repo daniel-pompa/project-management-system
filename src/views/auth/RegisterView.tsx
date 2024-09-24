@@ -8,7 +8,7 @@ export const RegisterView = () => {
     name: '',
     email: '',
     password: '',
-    password_confirmation: '',
+    confirm_password: '',
   };
 
   const {
@@ -19,6 +19,7 @@ export const RegisterView = () => {
     formState: { errors },
   } = useForm<UserRegistrationForm>({ defaultValues: initialValues });
 
+  // Watch for the password field value to compare with the confirmation password
   const password = watch('password');
 
   const onSubmit = (formData: UserRegistrationForm) => {};
@@ -85,21 +86,21 @@ export const RegisterView = () => {
           {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
         </div>
         <div className='flex flex-col gap-3'>
-          <label htmlFor='password_confirmation' className='font-bold'>
+          <label htmlFor='confirm_password' className='font-bold'>
             Repetir contraseña
           </label>
           <input
-            id='password_confirmation'
+            id='confirm_password'
             type='password'
             placeholder='Repetir contraseña'
             className='w-full p-2 border-slate-200 border rounded'
-            {...register('password_confirmation', {
+            {...register('confirm_password', {
               required: 'La repetición de la contraseña es obligatoria',
               validate: value => value === password || 'La contraseña no coincide',
             })}
           />
-          {errors.password_confirmation && (
-            <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>
+          {errors.confirm_password && (
+            <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
           )}
         </div>
         <input

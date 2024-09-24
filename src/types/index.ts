@@ -5,12 +5,12 @@ export const authSchema = z.object({
   name: z.string(),
   email: z.string(),
   password: z.string(),
-  password_confirmation: z.string(),
+  confirm_password: z.string(),
 });
 
 type Auth = z.infer<typeof authSchema>;
 export type UserLoginCredentials = Pick<Auth, 'email' | 'password'>;
-export type UserRegistrationForm = Pick<Auth, 'name' | 'email' | 'password' | 'password_confirmation'>;
+export type UserRegistrationForm = Pick<Auth, 'name' | 'email' | 'password' | 'confirm_password'>;
 
 /** Tasks */
 export const taskStatusSchema = z.enum([
