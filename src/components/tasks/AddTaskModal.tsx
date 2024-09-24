@@ -11,7 +11,7 @@ import {
 } from '@headlessui/react';
 import { TaskFormData } from '@/types';
 import { TaskForm } from '@/components';
-import { createTask } from '@/api/task-api';
+import { createTask } from '@/api'
 import { toast } from 'react-toastify';
 
 export const AddTaskModal = () => {

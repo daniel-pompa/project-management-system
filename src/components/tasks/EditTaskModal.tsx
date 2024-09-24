@@ -12,7 +12,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { Task, TaskFormData } from '@/types';
 import { TaskForm } from '@/components';
-import { updateTask } from '@/api/task-api';
+import { updateTask } from '@/api';
 
 type EditTaskModalProps = {
   data: Task;

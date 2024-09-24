@@ -10,7 +10,7 @@ import {
 } from '@headlessui/react';
 import { toast } from 'react-toastify';
 import { TaskStatus } from '@/types';
-import { getTaskById, updateStatus } from '@/api/task-api';
+import { getTaskById, updateStatus } from '@/api';
 import { formatDate } from '@/utils/utils';
 import { statusTranslations } from '@/locales/es';
 

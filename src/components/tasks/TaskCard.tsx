@@ -5,7 +5,7 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { toast } from 'react-toastify';
 import { Task } from '@/types';
-import { deleteTask } from '@/api/task-api';
+import { deleteTask } from '@/api';
 
 type TaskCardProps = {
   task: Task;
@@ -37,7 +37,7 @@ export const TaskCard = ({ task }: TaskCardProps) => {
       <div className='min-w-0 flex flex-col gap-y-2'>
         <Link
           to={`${location.pathname}?view-task=${task._id}`}
-          className='text-slate-600 font-bold text-left'
+          className='text-slate-600 font-bold text-left truncate'
         >
           {task.name}
         </Link>
