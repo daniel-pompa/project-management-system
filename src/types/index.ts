@@ -6,12 +6,14 @@ export const authSchema = z.object({
   email: z.string(),
   password: z.string(),
   confirm_password: z.string(),
+  token: z.string(),
 });
 
 type Auth = z.infer<typeof authSchema>;
 export type UserLoginCredentials = Pick<Auth, 'email' | 'password'>;
 export type UserRegistrationForm = Pick<Auth, 'name' | 'email' | 'password' | 'confirm_password'>;
 
+export type ConfirmToken = Pick<Auth, 'token'>;
 /** Tasks */
 export const taskStatusSchema = z.enum([
   'pending',

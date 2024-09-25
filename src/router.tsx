@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppLayout, AuthLayout } from '@/layouts';
 import {
+  ConfirmAccountView,
   CreateProjectView,
   DashboardView,
   EditProjectView,
@@ -22,6 +23,7 @@ export default function Router() {
         <Route element={<AuthLayout />}>
           <Route path='/auth/login' element={<LoginView />} />
           <Route path='/auth/register' element={<RegisterView />} />
+          <Route path='/auth/confirm-account' element={<ConfirmAccountView />} />
         </Route>
       </Routes>
     </BrowserRouter>

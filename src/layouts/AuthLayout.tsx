@@ -9,7 +9,7 @@ export const AuthLayout = () => {
         <div className='w-full max-w-xl mx-auto'>
           <div className='flex flex-col items-center'>
             <Logo />
-            <p className='text-xl md:text-3xl text-cyan-500 font-bold mt-5'>
+            <p className='text-2xl md:text-3xl text-cyan-500 font-bold mt-5'>
               Daem Gestión de Proyectos
             </p>
           </div>
