@@ -8,6 +8,7 @@ import {
   LoginView,
   ProjectDetailsView,
   RegisterView,
+  RequestNewCodeView,
 } from '@/views';
 
 export default function Router() {
@@ -24,6 +25,7 @@ export default function Router() {
           <Route path='/auth/login' element={<LoginView />} />
           <Route path='/auth/register' element={<RegisterView />} />
           <Route path='/auth/confirm-account' element={<ConfirmAccountView />} />
+          <Route path='/auth/request-code' element={<RequestNewCodeView />} />
         </Route>
       </Routes>
     </BrowserRouter>

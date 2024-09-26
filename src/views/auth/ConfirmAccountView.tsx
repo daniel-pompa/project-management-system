@@ -1,24 +1,35 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PinInput, PinInputField } from '@chakra-ui/pin-input';
+import { toast } from 'react-toastify';
+import { useMutation } from '@tanstack/react-query';
 import { ConfirmToken } from '@/types';
+import { confirmAccount } from '@/api';
 
 export const ConfirmAccountView = () => {
   const [token, setToken] = useState<ConfirmToken['token']>('');
+
+  const { mutate } = useMutation({
+    mutationFn: confirmAccount,
+    onSuccess: data => {
+      toast.success(data.message);
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
 
   const onValueChange = (token: ConfirmToken['token']) => {
     setToken(token);
   };
 
-  const onComplete = (token: ConfirmToken['token']) => {
-    console.log(token);
-  };
+  const onComplete = (token: ConfirmToken['token']) => mutate({ token });
 
   return (
     <>
-      <h1 className='text-xl md:text-2xl text-white text-center'>Confirma tu Cuenta</h1>
-      <p className='text-white text-center mt-5'>
-        Ingresa el código que recibiste en tu correo electrónico
+      <h1 className='text-xl md:text-2xl text-slate-300 text-center'>Confirma tu Cuenta</h1>
+      <p className='text-slate-300 text-center mt-5'>
+        Ingresa el código que te enviamos a tu correo electronico
       </p>
       <form className='space-y-5 p-5 md:p-10 bg-white mt-10 rounded'>
         <label className='md:text-xl text-center block'>Código de 6 dígitos</label>
@@ -35,7 +46,7 @@ export const ConfirmAccountView = () => {
       </form>
 
       <nav className='mt-10 flex flex-col space-y-4'>
-        <Link to='/auth/new-code' className='text-center text-white'>
+        <Link to='/auth/request-new-code' className='text-slate-300 text-center'>
           Solicitar un nuevo código
         </Link>
       </nav>

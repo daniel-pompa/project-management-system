@@ -10,10 +10,15 @@ export const authSchema = z.object({
 });
 
 type Auth = z.infer<typeof authSchema>;
-export type UserLoginCredentials = Pick<Auth, 'email' | 'password'>;
-export type UserRegistrationForm = Pick<Auth, 'name' | 'email' | 'password' | 'confirm_password'>;
 
+export type UserLoginCredentials = Pick<Auth, 'email' | 'password'>;
+export type UserRegistrationForm = Pick<
+  Auth,
+  'name' | 'email' | 'password' | 'confirm_password'
+>;
+export type RequestConfirmationCodeForm = Pick<Auth, 'email'>;
 export type ConfirmToken = Pick<Auth, 'token'>;
+
 /** Tasks */
 export const taskStatusSchema = z.enum([
   'pending',
