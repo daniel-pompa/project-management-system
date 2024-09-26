@@ -1,41 +1,26 @@
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
-import { UserLoginCredentials } from '@/types';
-import { login } from '@/api';
 import { ErrorMessage } from '@/components';
-import { toast } from 'react-toastify';
+import { ResetPasswordForm } from '@/types';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
-export const LoginView = () => {
-  const initialValues: UserLoginCredentials = {
+export const ResetPasswordView = () => {
+  const initialValues: ResetPasswordForm = {
     email: '',
-    password: '',
   };
-
-  /** Sets up form handling with React Hook Form */
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
-  const { mutate } = useMutation({
-    mutationFn: login,
-    onSuccess: data => {
-      toast.success(data.message);
-    },
-    onError: error => {
-      toast.error(error.message);
-    },
-  });
-
-  const onSubmit = (formData: UserLoginCredentials) => mutate(formData);
+  const onSubmit = (formData: ResetPasswordForm) => {};
 
   return (
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className='space-y-5 p-5 md:p-10 bg-white rounded'
+        className='space-y-5 p-5 md:p-10 bg-white mt-5 rounded'
         noValidate
       >
         <div className='flex flex-col gap-3'>
@@ -57,33 +42,17 @@ export const LoginView = () => {
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
-        <div className='flex flex-col gap-3'>
-          <label htmlFor='password' className='font-bold'>
-            Contraseña
-          </label>
-          <input
-            id='password'
-            type='password'
-            placeholder='********'
-            className='w-full p-2 border-slate-200 border rounded'
-            {...register('password', {
-              required: 'La contraseña es obligatoria',
-            })}
-          />
-          {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-        </div>
-
         <input
           type='submit'
-          value='Iniciar sesión'
+          value='Restablecer contraseña'
           className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
         />
       </form>
       <nav className='flex flex-col items-center space-y-2 text-sm md:text-lg text-slate-300 mt-10'>
         <p>
-          ¿Olvidaste tu contraseña?{' '}
-          <Link to={'/auth/reset-password'} className='text-cyan-500'>
-            Restablecer
+          ¿Ya tienes una cuenta en Daem?{' '}
+          <Link to={'/auth/login'} className='text-cyan-500'>
+            Inicia sesión
           </Link>
         </p>
         <p>
