@@ -1,7 +1,10 @@
-import { ErrorMessage } from '@/components';
-import { ResetPasswordForm } from '@/types';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { resetPassword } from '@/api';
+import { ResetPasswordForm } from '@/types';
+import { ErrorMessage } from '@/components';
 
 export const ResetPasswordView = () => {
   const initialValues: ResetPasswordForm = {
@@ -14,7 +17,18 @@ export const ResetPasswordView = () => {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
-  const onSubmit = (formData: ResetPasswordForm) => {};
+  const { mutate } = useMutation({
+    mutationFn: resetPassword,
+    onSuccess: data => {
+      toast.success(data.message);
+      reset();
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  const onSubmit = (formData: ResetPasswordForm) => mutate(formData);
 
   return (
     <>
@@ -44,7 +58,7 @@ export const ResetPasswordView = () => {
         </div>
         <input
           type='submit'
-          value='Restablecer contraseña'
+          value='Enviar instrucciones'
           className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
         />
       </form>

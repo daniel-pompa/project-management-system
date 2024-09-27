@@ -1,34 +1,37 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 import { PinInput, PinInputField } from '@chakra-ui/pin-input';
-import { toast } from 'react-toastify';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { verifyToken } from '@/api';
 import { ConfirmToken } from '@/types';
-import { confirmAccount } from '@/api';
 
-export const ConfirmAccountView = () => {
-  const [token, setToken] = useState<ConfirmToken['token']>('');
+type NewPasswordTokenProps = {
+  token: ConfirmToken['token'];
+  setToken: Dispatch<SetStateAction<string>>;
+  setTokenValid: Dispatch<SetStateAction<boolean>>;
+};
 
+export const NewPasswordToken = ({ token, setToken, setTokenValid }: NewPasswordTokenProps) => {
   const { mutate } = useMutation({
-    mutationFn: confirmAccount,
+    mutationFn: verifyToken,
     onSuccess: data => {
       toast.success(data.message);
+      setTokenValid(true);
     },
     onError: error => {
       toast.error(error.message);
     },
   });
 
-  const onValueChange = (token: ConfirmToken['token']) => {
-    setToken(token);
-  };
+  const onValueChange = (token: ConfirmToken['token']) => setToken(token);
 
   const onComplete = (token: ConfirmToken['token']) => mutate({ token });
 
   return (
     <>
       <h1 className='text-xl md:text-2xl text-slate-300 text-center'>
-        Confirma tu Cuenta
+        Restablecer contraseña
       </h1>
       <p className='text-slate-300 text-center mt-5'>
         Ingresa el código que te enviamos a tu correo electronico
@@ -48,7 +51,7 @@ export const ConfirmAccountView = () => {
       </form>
 
       <nav className='mt-10 flex flex-col space-y-4'>
-        <Link to='/auth/request-new-code' className='text-slate-300 text-center'>
+        <Link to='/auth/reset-password' className='text-slate-300 text-center'>
           Solicitar un nuevo código
         </Link>
       </nav>
