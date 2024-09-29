@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
 import { Menu, MenuButton, MenuItem } from '@headlessui/react';
-import { BiLogOutCircle } from 'react-icons/bi';
-export const NavMenu = () => {
+import { useQueryClient } from '@tanstack/react-query';
+import { AiOutlineLogout } from 'react-icons/ai';
+import { User } from '@/types';
+
+type NavMenuProps = {
+  name: User['name'];
+};
+
+export const NavMenu = ({ name }: NavMenuProps) => {
+  const queryClient = useQueryClient();
+
+  const logout = () => {
+    localStorage.removeItem('AUTH_TOKEN');
+    queryClient.invalidateQueries({ queryKey: ['user'] });
+  };
+
   return (
     <div className='flex justify-center md:justify-between mt-5 md:mt-0 w-full'>
       <Menu>
@@ -18,9 +32,9 @@ export const NavMenu = () => {
           </MenuItem>
         </div>
         <div className='flex space-x-3 ms-4 md:ms-0'>
-          <p className='md:text-xl'>Hola, Daniel</p>
+          <p className='md:text-xl'>Hola, {name}</p>
           <MenuButton className='hover:text-cyan-400'>
-            <BiLogOutCircle className='h-6 w-6 md:w-7 md:h-7' />
+            <AiOutlineLogout className='h-5 w-5 md:w-6 md:h-6' onClick={logout} />
           </MenuButton>
         </div>
       </Menu>

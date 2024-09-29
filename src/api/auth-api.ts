@@ -6,6 +6,7 @@ import {
   RequestConfirmationCodeForm,
   UserLoginCredentials,
   UserRegistrationForm,
+  userSchema,
 } from '@/types';
 
 export const createAccount = async (formData: UserRegistrationForm) => {
@@ -92,6 +93,18 @@ export const resetPasswordWithToken = async ({
     const url = `/auth/reset-password/${token}`;
     const { data } = await api.post(url, formData);
     return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response?.data?.message);
+    }
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const { data } = await api.get('/auth/user');
+    const response = userSchema.safeParse(data);
+    if (response.success) return response.data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response?.data?.message);
