@@ -8,6 +8,7 @@ import {
   LoginView,
   NewPasswordView,
   ProjectDetailsView,
+  ProjectTeamView,
   RegisterView,
   RequestNewCodeView,
   ResetPasswordView,
@@ -22,6 +23,7 @@ export default function Router() {
           <Route path='/projects/create' element={<CreateProjectView />} />
           <Route path='/projects/:projectId' element={<ProjectDetailsView />} />
           <Route path='/projects/:projectId/edit' element={<EditProjectView />} />
+          <Route path='/projects/:projectId/team' element={<ProjectTeamView />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path='/auth/login' element={<LoginView />} />

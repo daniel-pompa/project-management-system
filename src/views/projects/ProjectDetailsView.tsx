@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   AddTaskModal,
@@ -38,6 +38,12 @@ export const ProjectDetailsView = () => {
             >
               Crear tarea
             </button>
+            <Link
+              to={'team'}
+              className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-1 rounded transition-colors ml-3 md:mt-2 inline-block'
+            >
+              Colaboradores
+            </Link>
           </nav>
         </div>
         <TaskList tasks={data.tasks} />
