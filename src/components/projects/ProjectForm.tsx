@@ -16,7 +16,7 @@ export const ProjectForm = ({ register, errors }: ProjectFormProps) => {
         </label>
         <input
           id='name'
-          className='w-full p-3 border border-slate-200 rounded'
+          className='w-full p-2 border border-slate-200 rounded'
           type='text'
           placeholder='Nombre del proyecto'
           {...register('name', {
@@ -31,7 +31,7 @@ export const ProjectForm = ({ register, errors }: ProjectFormProps) => {
         </label>
         <input
           id='client'
-          className='w-full p-3 border border-slate-200 rounded'
+          className='w-full p-2 border border-slate-200 rounded'
           type='text'
           placeholder='Nombre del cliente'
           {...register('client', {
@@ -46,7 +46,7 @@ export const ProjectForm = ({ register, errors }: ProjectFormProps) => {
         </label>
         <textarea
           id='description'
-          className='w-full p-3 border border-slate-200 rounded'
+          className='w-full p-2 border border-slate-200 rounded'
           placeholder='Descripción del proyecto'
           {...register('description', {
             required: 'La descripción del proyecto es obligatoria',

@@ -18,7 +18,7 @@ export const TaskForm = ({ errors, register }: TaskFormProps) => {
           id='name'
           type='text'
           placeholder='Nombre de la tarea'
-          className='w-full p-3 border-slate-200 border rounded'
+          className='w-full p-2 border-slate-200 border rounded'
           {...register('name', {
             required: 'El nombre de la tarea es obligatorio',
           })}
@@ -33,7 +33,7 @@ export const TaskForm = ({ errors, register }: TaskFormProps) => {
         <textarea
           id='description'
           placeholder='Descripción de la tarea'
-          className='w-full p-3 border-slate-200 border rounded'
+          className='w-full p-2 border-slate-200 border rounded'
           {...register('description', {
             required: 'La descripción de la tarea es obligatoria',
           })}
