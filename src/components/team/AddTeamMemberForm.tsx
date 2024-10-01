@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { TeamMemberForm } from '@/types';
-import { ErrorMessage } from '@/components';
+import { findUserByEmail } from '@/api';
+import { ErrorMessage, Spinner, TeamMemberResult } from '@/components';
 
 export const AddTeamMemberForm = () => {
   const initialValues: TeamMemberForm = {
@@ -18,9 +19,22 @@ export const AddTeamMemberForm = () => {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
-  const mutation = useMutation({});
+  const mutation = useMutation({
+    mutationFn: findUserByEmail,
+  });
 
-  const handleSearchUser = async () => {};
+  const handleSearchUser = async (formData: TeamMemberForm) => {
+    const data = {
+      projectId,
+      formData,
+    };
+    mutation.mutate(data);
+  };
+
+  const resetData = () => {
+    reset();
+    mutation.reset();
+  };
 
   return (
     <>
@@ -37,7 +51,7 @@ export const AddTeamMemberForm = () => {
             id='name'
             type='text'
             placeholder='user@example.com'
-            className='w-full p-3 border border-slate-200 rounded'
+            className='w-full p-2 border border-slate-200 rounded'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -54,6 +68,13 @@ export const AddTeamMemberForm = () => {
           className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
         />
       </form>
+      {mutation.isPending && <Spinner />}
+      {mutation.error && (
+        <p className='text-center mt-5 px-3 py-2 bg-red-100 text-red-800 rounded'>
+          {mutation.error.message}
+        </p>
+      )}
+      {mutation.data && <TeamMemberResult user={mutation.data} reset={resetData} />}
     </>
   );
 };

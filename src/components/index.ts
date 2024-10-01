@@ -15,3 +15,4 @@ export * from './tasks/TaskForm';
 export * from './tasks/TaskList';
 export * from './team/AddTeamMemberForm';
 export * from './team/AddTeamMemberModal';
+export * from './team/TeamMemberResult';
