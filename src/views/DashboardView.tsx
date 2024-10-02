@@ -6,8 +6,11 @@ import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { deleteProject, getProjects } from '@/api';
 import { Spinner } from '@/components';
 import { toast } from 'react-toastify';
+import { useAuth } from '../hooks/useAuth';
 
 export const DashboardView = () => {
+  const { data: user, isLoading: authLoading } = useAuth();
+
   const { data, isLoading } = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
@@ -26,9 +29,9 @@ export const DashboardView = () => {
     },
   });
 
-  if (isLoading) return <Spinner />;
+  if (isLoading && authLoading) return <Spinner />;
 
-  if (data)
+  if (data && user)
     return (
       <>
         <div className='flex flex-col md:flex-row md:justify-between'>
@@ -56,6 +59,18 @@ export const DashboardView = () => {
                 className='flex justify-between items-center bg-white p-4 rounded shadow-md '
               >
                 <div className='space-y-2 w-full h-full'>
+                  {/* Project info */}
+                  <div className='mb-2'>
+                    {project.manager === user._id ? (
+                      <p className='bg-indigo-50 text-indigo-500 border border-indigo-200 px-6 py-1 rounded text-sm font-bold inline-block'>
+                        Manager
+                      </p>
+                    ) : (
+                      <p className='bg-teal-50 text-teal-500 border border-teal-200 px-6 py-1 rounded text-sm font-bold inline-block'>
+                        Colaborador
+                      </p>
+                    )}
+                  </div>
                   <Link to={`/projects/${project._id}`} className='text-xl font-bold'>
                     {project.name}
                   </Link>
@@ -85,23 +100,27 @@ export const DashboardView = () => {
                           Ver proyecto
                         </Link>
                       </MenuItem>
-                      <MenuItem>
-                        <Link
-                          to={`/projects/${project._id}/edit`}
-                          className='block px-3 py-1 text-sm leading-6'
-                        >
-                          Editar proyecto
-                        </Link>
-                      </MenuItem>
-                      <MenuItem>
-                        <button
-                          type='button'
-                          className='block px-3 py-1 text-sm leading-6 text-red-600'
-                          onClick={() => mutate(project._id)}
-                        >
-                          Eliminar proyecto
-                        </button>
-                      </MenuItem>
+                      {project.manager === user._id && (
+                        <>
+                          <MenuItem>
+                            <Link
+                              to={`/projects/${project._id}/edit`}
+                              className='block px-3 py-1 text-sm leading-6'
+                            >
+                              Editar proyecto
+                            </Link>
+                          </MenuItem>
+                          <MenuItem>
+                            <button
+                              type='button'
+                              className='block px-3 py-1 text-sm leading-6 text-red-600'
+                              onClick={() => mutate(project._id)}
+                            >
+                              Eliminar proyecto
+                            </button>
+                          </MenuItem>
+                        </>
+                      )}
                     </MenuItems>
                   </Transition>
                 </Menu>
