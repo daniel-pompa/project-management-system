@@ -55,7 +55,7 @@ export const EditProjectForm = ({ data, projectId }: EditProjectFormProps) => {
       <div className='max-w-2xl mx-auto'>
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
-            <h1 className='text-xl md:text-3xl font-bold'>Editar proyecto</h1>
+            <h1 className='text-2xl md:text-3xl font-bold'>Editar proyecto</h1>
             <p className='md:text-xl text-slate-600'>
               Completa el formulario para editar el proyecto
             </p>

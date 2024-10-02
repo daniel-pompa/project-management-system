@@ -87,7 +87,7 @@ export const EditTaskModal = ({ data, taskId }: EditTaskModalProps) => {
               leaveTo='opacity-0 scale-95'
             >
               <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
-                <DialogTitle as='h3' className='text-xl md:text-3xl font-bold my-2'>
+                <DialogTitle as='h3' className='text-2xl md:text-3xl font-bold my-2'>
                   Editar Tarea
                 </DialogTitle>
 

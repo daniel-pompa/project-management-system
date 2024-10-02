@@ -35,7 +35,7 @@ export const TaskList = ({ tasks }: TaskListProps) => {
 
   return (
     <>
-      <h2 className='text-xl md:text-3xl font-black mt-10'>Tareas</h2>
+      <h2 className='text-2xl md:text-3xl font-black mt-10'>Tareas</h2>
       <div className='flex flex-col md:flex-row gap-5 overflow-x-scroll 2xl:overflow-auto pb-20'>
         {Object.entries(groupedTasks).map(([status, tasks]) => (
           <div key={status} className='min-w-[300px] 2xl:min-w-0 2xl:w-1/5'>

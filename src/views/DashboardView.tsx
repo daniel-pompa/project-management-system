@@ -33,7 +33,7 @@ export const DashboardView = () => {
       <>
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
-            <h1 className='text-xl md:text-3xl font-bold'>Proyectos</h1>
+            <h1 className='text-2xl md:text-3xl font-bold'>Proyectos</h1>
             <p className='md:text-xl text-slate-600'>
               Gestiona y administra tus proyectos
             </p>
