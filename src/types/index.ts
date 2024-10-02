@@ -12,10 +12,7 @@ export const authSchema = z.object({
 type Auth = z.infer<typeof authSchema>;
 
 export type UserLoginCredentials = Pick<Auth, 'email' | 'password'>;
-export type UserRegistrationForm = Pick<
-  Auth,
-  'name' | 'email' | 'password' | 'confirm_password'
->;
+export type UserRegistrationForm = Pick<Auth, 'name' | 'email' | 'password' | 'confirm_password'>;
 export type RequestConfirmationCodeForm = Pick<Auth, 'email'>;
 export type ResetPasswordForm = Pick<Auth, 'email'>;
 export type NewPasswordFormType = Pick<Auth, 'password' | 'confirm_password'>;
@@ -79,5 +76,6 @@ export const teamMemberSchema = userSchema.pick({
   email: true,
 });
 
+export const teamMembersSchema = z.array(teamMemberSchema);
 export type TeamMember = z.infer<typeof teamMemberSchema>;
-export  type TeamMemberForm = Pick<TeamMember, 'email'>;
+export type TeamMemberForm = Pick<TeamMember, 'email'>;
