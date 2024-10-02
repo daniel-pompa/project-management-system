@@ -7,6 +7,7 @@ import { deleteProject, getProjects } from '@/api';
 import { Spinner } from '@/components';
 import { toast } from 'react-toastify';
 import { useAuth } from '../hooks/useAuth';
+import { isManager } from '@/utils/policies';
 
 export const DashboardView = () => {
   const { data: user, isLoading: authLoading } = useAuth();
@@ -61,7 +62,8 @@ export const DashboardView = () => {
                 <div className='space-y-2 w-full h-full'>
                   {/* Project info */}
                   <div className='mb-2'>
-                    {project.manager === user._id ? (
+                    {/* Verify if user is project manager */}
+                    {isManager(project.manager, user._id) ? (
                       <p className='bg-indigo-50 text-indigo-500 border border-indigo-200 px-6 py-1 rounded text-sm font-bold inline-block'>
                         Manager
                       </p>
@@ -100,7 +102,8 @@ export const DashboardView = () => {
                           Ver proyecto
                         </Link>
                       </MenuItem>
-                      {project.manager === user._id && (
+                      {/* Verify if user is project manager */}
+                      {isManager(project.manager, user._id) && (
                         <>
                           <MenuItem>
                             <Link
