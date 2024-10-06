@@ -9,9 +9,10 @@ import { deleteTask } from '@/api';
 
 type TaskCardProps = {
   task: Task;
+  hasEditPermission: boolean;
 };
 
-export const TaskCard = ({ task }: TaskCardProps) => {
+export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
   const navigate = useNavigate();
 
   /** Get the project ID from the URL */
@@ -68,24 +69,30 @@ export const TaskCard = ({ task }: TaskCardProps) => {
                   Ver Tarea
                 </button>
               </MenuItem>
-              <MenuItem>
-                <button
-                  type='button'
-                  className='block px-3 py-1 text-sm leading-6 text-slate-900'
-                  onClick={() => navigate(`${location.pathname}?edit-task=${task._id}`)}
-                >
-                  Editar Tarea
-                </button>
-              </MenuItem>
-              <MenuItem>
-                <button
-                  type='button'
-                  className='block px-3 py-1 text-sm leading-6 text-red-600'
-                  onClick={() => mutate({ projectId, taskId: task._id })}
-                >
-                  Eliminar Tarea
-                </button>
-              </MenuItem>
+              {hasEditPermission && (
+                <>
+                  <MenuItem>
+                    <button
+                      type='button'
+                      className='block px-3 py-1 text-sm leading-6 text-slate-900'
+                      onClick={() =>
+                        navigate(`${location.pathname}?edit-task=${task._id}`)
+                      }
+                    >
+                      Editar Tarea
+                    </button>
+                  </MenuItem>
+                  <MenuItem>
+                    <button
+                      type='button'
+                      className='block px-3 py-1 text-sm leading-6 text-red-600'
+                      onClick={() => mutate({ projectId, taskId: task._id })}
+                    >
+                      Eliminar Tarea
+                    </button>
+                  </MenuItem>
+                </>
+              )}
             </MenuItems>
           </Transition>
         </Menu>

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -23,6 +24,9 @@ export const ProjectDetailsView = () => {
     queryFn: () => getProjectById(projectId),
     retry: false,
   });
+
+  // Check if user is project manager and has edit permission
+  const hasEditPermission = useMemo(() => data?.manager === user?._id, [data, user]);
 
   if (isLoading && authLoading) return <Spinner />;
   if (isError) return <Navigate to='/404' />;
@@ -54,7 +58,7 @@ export const ProjectDetailsView = () => {
             </nav>
           )}
         </div>
-        <TaskList tasks={data.tasks} />
+        <TaskList tasks={data.tasks} hasEditPermission={hasEditPermission} />
         <AddTaskModal />
         <EditTaskData />
         <TaskDetailsModal />
