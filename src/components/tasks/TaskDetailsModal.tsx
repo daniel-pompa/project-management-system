@@ -99,16 +99,29 @@ export const TaskDetailsModal = () => {
                   leaveTo='opacity-0 scale-95'
                 >
                   <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow transition-all p-5 md:p-10'>
-                    <p className='text-xs md:text-sm text-slate-500 mb-1'>
+                    <p className='text-sm md:text-lg text-slate-500 mb-1'>
                       Creada: {formatDate(data.createdAt)}
                     </p>
-                    <p className='text-xs md:text-sm text-slate-500'>
+                    <p className='text-sm md:text-lg text-slate-500'>
                       Última actualización: {formatDate(data.updatedAt)}
                     </p>
                     <DialogTitle as='h3' className='text-xl md:text-2xl font-bold my-5'>
                       {data.name}
                     </DialogTitle>
                     <p className='text-slate-500 mb-2'>{data.description}</p>
+                    {data.lastStatusChangedBy.length > 0 && (
+                      <>
+                        <p className='mt-4 mb-2 font-bold'>Historial de cambios</p>
+                        <ul className='list-decimal ml-5'>
+                          {data.lastStatusChangedBy.map(activityLog => (
+                            <li key={activityLog._id} className='text-slate-500'>
+                              {statusTranslations[activityLog.status]} -{' '}
+                              {activityLog.user.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                     <div className='my-5 space-y-3'>
                       <label htmlFor='status' className='font-bold'>
                         Estado actual
