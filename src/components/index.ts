@@ -4,6 +4,7 @@ export * from './ErrorMessage';
 export * from './Logo';
 export * from './NavMenu';
 export * from './notes/AddNoteForm';
+export * from './notes/NoteDetail';
 export * from './notes/NotesPanel';
 export * from './projects/EditProjectForm';
 export * from './projects/ProjectForm';

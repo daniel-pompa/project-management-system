@@ -140,7 +140,7 @@ export const TaskDetailsModal = () => {
                         ))}
                       </select>
                     </div>
-                    <NotesPanel />
+                    <NotesPanel notes={data.notes} />
                   </DialogPanel>
                 </TransitionChild>
               </div>
