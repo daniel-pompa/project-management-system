@@ -13,6 +13,7 @@ import { TaskStatus } from '@/types';
 import { getTaskById, updateStatus } from '@/api';
 import { formatDate } from '@/utils/utils';
 import { statusTranslations } from '@/locales/es';
+import { NotesPanel } from '@/components';
 
 export const TaskDetailsModal = () => {
   const [redirect, setRedirect] = useState(false);
@@ -109,7 +110,7 @@ export const TaskDetailsModal = () => {
                       {data.name}
                     </DialogTitle>
                     <p className='text-slate-500 mb-2'>{data.description}</p>
-                    {data.lastStatusChangedBy.length > 0 && (
+                    {data.lastStatusChangedBy.length ? (
                       <>
                         <p className='mt-4 mb-2 font-bold'>Historial de cambios</p>
                         <ul className='list-decimal ml-5'>
@@ -121,7 +122,7 @@ export const TaskDetailsModal = () => {
                           ))}
                         </ul>
                       </>
-                    )}
+                    ) : null}
                     <div className='my-5 space-y-3'>
                       <label htmlFor='status' className='font-bold'>
                         Estado actual
@@ -139,6 +140,7 @@ export const TaskDetailsModal = () => {
                         ))}
                       </select>
                     </div>
+                    <NotesPanel />
                   </DialogPanel>
                 </TransitionChild>
               </div>
