@@ -6,6 +6,7 @@ export * from './NavMenu';
 export * from './notes/AddNoteForm';
 export * from './notes/NoteDetail';
 export * from './notes/NotesPanel';
+export * from './profile/Tabs';
 export * from './projects/EditProjectForm';
 export * from './projects/ProjectForm';
 export * from './Spinner/Spinner';

@@ -5,6 +5,8 @@ export * from './auth/RegisterView';
 export * from './auth/RequestNewCodeView';
 export * from './auth/ResetPasswordView';
 export * from './DashboardView';
+export * from './profile/ChangePasswordView';
+export * from './profile/ProfileView';
 export * from './projects/CreateProjectView';
 export * from './projects/EditProjectView';
 export * from './projects/ProjectDetailsView';
