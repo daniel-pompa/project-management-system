@@ -7,7 +7,7 @@ import { Note } from '@/types';
 import { deleteNote } from '@/api';
 import { formatDate } from '@/utils/utils';
 import { useAuth } from '@/hooks/useAuth';
-import { Spinner } from '../Spinner/Spinner';
+import { Spinner } from '@/components';
 
 type NoteDetailProps = {
   note: Note;
