@@ -1,4 +1,7 @@
 import { useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { updateProfile } from '@/api';
 import { User, UserProfileFormData } from '@/types';
 import { ErrorMessage } from '../ErrorMessage';
 
@@ -13,13 +16,26 @@ export const ProfileForm = ({ data }: ProfileFormProps) => {
     formState: { errors },
   } = useForm<UserProfileFormData>({ defaultValues: data });
 
-  const onSubmit = (formData: UserProfileFormData) => {};
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateProfile,
+    onSuccess: data => {
+      toast.success(data.message);
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+    },
+    onError: error => {
+      toast.error(error.message);
+    },
+  });
+
+  const onSubmit = (formData: UserProfileFormData) => mutate(formData);
 
   return (
     <>
       <div className='mx-auto max-w-2xl'>
         <div className='space-y-2'>
-          <h1 className='text-2xl md:text-3xl font-bold'>Mi Perfil</h1>
+          <h1 className='text-2xl md:text-3xl font-bold'>Mi perfil</h1>
           <p className='md:text-xl text-slate-600'>
             Actualiza tu información completando el siguiente formulario.
           </p>
