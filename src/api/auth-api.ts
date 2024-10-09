@@ -16,7 +16,11 @@ export const createAccount = async (formData: UserRegistrationForm) => {
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response?.data?.message);
+      const errorMessage =
+        error.response.data.message ||
+        error.response.data.errors?.[0]?.msg ||
+        'Error al cambiar la contraseña';
+      throw new Error(errorMessage);
     }
   }
 };
@@ -95,7 +99,11 @@ export const resetPasswordWithToken = async ({
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      throw new Error(error.response?.data?.message);
+      const errorMessage =
+        error.response.data.message ||
+        error.response.data.errors?.[0]?.msg ||
+        'Error al restablecer la contraseña';
+      throw new Error(errorMessage);
     }
   }
 };
