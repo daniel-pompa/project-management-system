@@ -37,7 +37,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
     },
   });
 
-  const handleNewPassword = (formData: NewPasswordFormType) => {
+  const onSubmit = (formData: NewPasswordFormType) => {
     const data = {
       formData,
       token,
@@ -50,7 +50,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
   return (
     <>
       <form
-        onSubmit={handleSubmit(handleNewPassword)}
+        onSubmit={handleSubmit(onSubmit)}
         className='space-y-5 p-5 md:p-10 bg-white mt-5 rounded'
         noValidate
       >
