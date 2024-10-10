@@ -94,7 +94,7 @@ export const AddTaskModal = () => {
               >
                 <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
                   <DialogTitle as='h2' className='text-2xl md:text-3xl font-bold my-2'>
-                    Nueva Tarea
+                    Nueva tarea
                   </DialogTitle>
                   <p className='md:text-xl text-slate-600'>
                     Completa el formulario para crear una tarea.
