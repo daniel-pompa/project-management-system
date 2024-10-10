@@ -8,6 +8,7 @@ export * from './notes/NoteDetail';
 export * from './notes/NotesPanel';
 export * from './profile/ProfileForm';
 export * from './profile/Tabs';
+export * from './projects/DeleteProjectModal';
 export * from './projects/EditProjectForm';
 export * from './projects/ProjectForm';
 export * from './spinner/Spinner';

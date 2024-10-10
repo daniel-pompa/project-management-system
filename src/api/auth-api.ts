@@ -1,6 +1,7 @@
 import api from '@/lib/axios';
 import { isAxiosError } from 'axios';
 import {
+  CheckUserPasswordFormType,
   ConfirmToken,
   NewPasswordFormType,
   RequestConfirmationCodeForm,
@@ -113,6 +114,18 @@ export const getUser = async () => {
     const { data } = await api.get('/auth/user');
     const response = userSchema.safeParse(data);
     if (response.success) return response.data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response?.data?.message);
+    }
+  }
+};
+
+export const checkUserPassword = async (formData: CheckUserPasswordFormType) => {
+  try {
+    const url = '/auth/check-password';
+    const { data } = await api.post(url, formData);
+    return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response?.data?.message);
