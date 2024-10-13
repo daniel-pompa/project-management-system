@@ -1,3 +1,4 @@
+export * from './404/NotFound';
 export * from './auth/ConfirmAccountView';
 export * from './auth/LoginView';
 export * from './auth/NewPasswordView';

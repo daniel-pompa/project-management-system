@@ -8,6 +8,7 @@ import {
   EditProjectView,
   LoginView,
   NewPasswordView,
+  NotFound,
   ProfileView,
   ProjectDetailsView,
   ProjectTeamView,
@@ -39,6 +40,7 @@ export default function Router() {
           <Route path='/auth/reset-password' element={<ResetPasswordView />} />
           <Route path='/auth/new-password' element={<NewPasswordView />} />
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
