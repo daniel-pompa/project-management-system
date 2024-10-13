@@ -17,6 +17,7 @@ export * from './tasks/EditTaskData';
 export * from './tasks/EditTaskModal';
 export * from './tasks/TaskCard';
 export * from './tasks/TaskDetailsModal';
+export * from './tasks/TaskDropZone';
 export * from './tasks/TaskForm';
 export * from './tasks/TaskList';
 export * from './team/AddTeamMemberForm';

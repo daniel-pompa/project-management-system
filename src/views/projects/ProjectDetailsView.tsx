@@ -8,7 +8,7 @@ import {
   TaskDetailsModal,
   TaskList,
 } from '@/components';
-import { getProjectById } from '@/api';
+import { getFullProject } from '@/api';
 import { useAuth } from '@/hooks/useAuth';
 import { isManager } from '@/utils/policies';
 
@@ -21,7 +21,7 @@ export const ProjectDetailsView = () => {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['project', projectId],
-    queryFn: () => getProjectById(projectId),
+    queryFn: () => getFullProject(projectId),
     retry: false,
   });
 

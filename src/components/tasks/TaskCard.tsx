@@ -1,20 +1,24 @@
 import { Fragment } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
-import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { useDraggable } from '@dnd-kit/core';
 import { toast } from 'react-toastify';
-import { Task } from '@/types';
+import { BiDotsVerticalRounded } from 'react-icons/bi';
+import { TaskProject } from '@/types';
 import { deleteTask } from '@/api';
 
 type TaskCardProps = {
-  task: Task;
+  task: TaskProject;
   hasEditPermission: boolean;
 };
 
 export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
-  const navigate = useNavigate();
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task._id,
+  });
 
+  const navigate = useNavigate();
   /** Get the project ID from the URL */
   const params = useParams();
   const projectId = params.projectId!;
@@ -33,15 +37,22 @@ export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
     },
   });
 
+  const style = transform
+    ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+      }
+    : undefined;
+
   return (
     <li className='p-5 bg-white border border-slate-200 rounded flex justify-between'>
-      <div className='min-w-0 flex flex-col gap-y-2'>
-        <Link
-          to={`${location.pathname}?view-task=${task._id}`}
-          className='text-slate-600 font-bold text-left truncate'
-        >
-          {task.name}
-        </Link>
+      <div
+        ref={setNodeRef}
+        {...attributes}
+        {...listeners}
+        style={style}
+        className='min-w-0 flex flex-col gap-y-2 cursor-move'
+      >
+        <p className='text-slate-600 font-bold text-left truncate'>{task.name}</p>
         <p className='text-slate-500 truncate'>{task.description}</p>
       </div>
       <div className='flex shrink-0 gap-x-6'>
