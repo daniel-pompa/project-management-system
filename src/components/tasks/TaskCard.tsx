@@ -50,7 +50,7 @@ export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
         {...attributes}
         {...listeners}
         style={style}
-        className='min-w-0 flex flex-col gap-y-2 cursor-move'
+        className='min-w-0 flex flex-col gap-y-2 w-full cursor-move'
       >
         <p className='text-slate-600 font-bold text-left truncate'>{task.name}</p>
         <p className='text-slate-500 truncate'>{task.description}</p>
