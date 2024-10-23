@@ -28,7 +28,7 @@ export const DashboardView = () => {
           <div className='space-y-2'>
             <h1 className='text-2xl md:text-3xl font-bold'>Proyectos</h1>
             <p className='md:text-xl text-slate-600'>
-              Gestiona y administra tus proyectos
+              Gestiona y administra tus proyectos.
             </p>
           </div>
           <nav className='mt-5 md:mt-3'>
@@ -127,7 +127,7 @@ export const DashboardView = () => {
               Actualmente no hay proyectos.{' '}
               <Link
                 to='/projects/create'
-                className='text-cyan-600 font-semibold hover:text-cyan-800 transition-colors duration-300'
+                className='text-blue-600 font-semibold hover:underline'
               >
                 Haz clic aquí para crear uno.
               </Link>
