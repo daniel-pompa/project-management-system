@@ -48,7 +48,7 @@ export const ConfirmAccountView = () => {
       </form>
 
       <nav className='mt-10 flex flex-col space-y-4'>
-        <Link to='/auth/request-new-code' className='text-slate-300 text-center'>
+        <Link to='/auth/request-code' className='text-slate-300 text-center'>
           Solicitar un nuevo código
         </Link>
       </nav>
