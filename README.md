@@ -43,7 +43,7 @@ npm --version
 ## Technology Stack
 
 <p>
-  <img src="https://skillicons.dev/icons?i=react" alt="Node.js" width="40" height="40" />
+  <img src="https://skillicons.dev/icons?i=react" alt="React" width="40" height="40" />
   <img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" width="40" height="40" />
   <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" width="40" height="40" />
 </p>
@@ -60,7 +60,51 @@ In addition to these core technologies, the application also utilizes:
 
 ## Project Structure
 
-The directory structure for the project is still being finalized. Once it is fully defined, this section will provide a comprehensive overview of how the project's files and components are organized, including details on the various directories.
+```bash
+├───📁 public/
+├───📁 src/
+│   ├───📁 api/
+│   ├───📁 assets/
+│   ├───📁 components/
+│   │   ├───📁 auth/
+│   │   ├───📁 notes/
+│   │   ├───📁 profile/
+│   │   ├───📁 projects/
+│   │   ├───📁 spinner/
+│   │   ├───📁 tasks/
+│   │   ├───📁 team/
+│   ├───📁 hooks/
+│   ├───📁 layouts/
+│   ├───📁 lib/
+│   ├───📁 locales/
+│   ├───📁 types/
+│   ├───📁 utils/
+│   ├───📁 views/
+│   │   ├───📁 404/
+│   │   ├───📁 auth/
+│   │   ├───📁 profile/
+│   │   ├───📁 projects/
+│   │   ├───📄 DashboardView.tsx
+│   │   └───📄 index.ts
+│   ├───📄 index.css
+│   ├───📄 main.tsx
+│   ├───📄 router.tsx
+│   └───📄 vite-env.d.ts
+├───📄 .env.template
+├───📄 eslint.config.js
+├───📄 index.html
+├───📄 LICENSE
+├───📄 package-lock.json
+├───📄 package.json
+├───📄 postcss.config.js
+├───📄 README.md
+├───📄 tailwind.config.js
+├───📄 tsconfig.app.json
+├───📄 tsconfig.json
+├───📄 tsconfig.node.json
+├───📄 vercel.json
+└───📄 vite.config.ts
+```
 
 ## Installation
 
