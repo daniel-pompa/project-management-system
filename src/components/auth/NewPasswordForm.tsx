@@ -56,7 +56,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
       >
         <div className='flex flex-col gap-3'>
           <label htmlFor='password' className='font-bold'>
-            Password
+            Contraseña
           </label>
           <input
             type='password'
@@ -75,7 +75,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
         </div>
         <div className='flex flex-col gap-5'>
           <label htmlFor='confirm_password' className='font-bold'>
-            Repetir Password
+            Repetir contraseña
           </label>
           <input
             id='confirm_password'
