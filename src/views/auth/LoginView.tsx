@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { UserLoginCredentials } from '@/types';
 import { login } from '@/api';
 import { ErrorMessage } from '@/components';
-import { toast } from 'react-toastify';
 
 export const LoginView = () => {
   const initialValues: UserLoginCredentials = {
@@ -35,12 +35,10 @@ export const LoginView = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='space-y-5 p-5 md:p-10 bg-white rounded'
-        noValidate
-      >
-        <div className='flex flex-col gap-3'>
+      <h2>Accede a tu cuenta</h2>
+      <div className='text-[var(--border-default)] border w-full mt-2 mb-4'></div>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5' noValidate>
+        <div className='flex flex-col gap-3 '>
           <label htmlFor='email' className='font-bold'>
             Correo electrónico
           </label>
@@ -48,7 +46,7 @@ export const LoginView = () => {
             id='email'
             type='email'
             placeholder='user@example.com'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -67,7 +65,7 @@ export const LoginView = () => {
             id='password'
             type='password'
             placeholder='********'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('password', {
               required: 'La contraseña es obligatoria',
             })}
@@ -75,24 +73,15 @@ export const LoginView = () => {
           {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
         </div>
 
-        <input
-          type='submit'
-          value='Iniciar sesión'
-          className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Iniciar sesión' className='btn w-full' />
       </form>
-      <nav className='flex flex-col items-center space-y-2 text-sm md:text-lg text-slate-300 mt-10'>
+      <nav className='flex flex-col items-center space-y-2 mt-5'>
         <p>
-          ¿Olvidaste tu contraseña?{' '}
-          <Link to={'/auth/reset-password'} className='text-cyan-500'>
-            Restablecer
-          </Link>
+          ¿Olvidaste tu contraseña? <Link to={'/auth/reset-password'}>Restablecer</Link>
         </p>
         <p>
           ¿Aún no tienes tu cuenta de Daem?{' '}
-          <Link to={'/auth/register'} className='text-cyan-500'>
-            Crea tu cuenta
-          </Link>
+          <Link to={'/auth/register'}>Crea tu cuenta</Link>
         </p>
       </nav>
     </>

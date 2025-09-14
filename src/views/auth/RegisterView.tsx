@@ -40,11 +40,9 @@ export const RegisterView = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='space-y-5 p-5 md:p-10 bg-white mt-5 rounded'
-        noValidate
-      >
+      <h2>Crea tu cuenta</h2>
+      <div className='text-[var(--border-default)] border w-full mt-2 mb-4'></div>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5' noValidate>
         <div className='flex flex-col gap-3'>
           <label htmlFor='name' className='font-bold'>
             Nombre
@@ -53,7 +51,7 @@ export const RegisterView = () => {
             id='name'
             type='name'
             placeholder='Nombre de usuario'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('name', {
               required: 'El nombre de usuario es obligatorio',
             })}
@@ -68,7 +66,7 @@ export const RegisterView = () => {
             id='email'
             type='email'
             placeholder='user@example.com'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -87,7 +85,7 @@ export const RegisterView = () => {
             id='password'
             type='password'
             placeholder='********'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('password', {
               required: 'La contraseña es obligatoria',
               minLength: {
@@ -107,7 +105,7 @@ export const RegisterView = () => {
             id='confirm_password'
             type='password'
             placeholder='Repetir contraseña'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('confirm_password', {
               required: 'La repetición de la contraseña es obligatoria',
               validate: value => value === password || 'La contraseña no coincide',
@@ -117,17 +115,12 @@ export const RegisterView = () => {
             <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
           )}
         </div>
-        <input
-          type='submit'
-          value='Crear cuenta'
-          className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Crear cuenta' className='btn w-full' />
       </form>
-      <nav className='text-center text-slate-300 mt-10'>
-        ¿Ya tienes una cuenta en Daem?{' '}
-        <Link to={'/auth/login'} className='text-cyan-500'>
-          Inicia sesión
-        </Link>
+      <nav className='flex flex-col items-center space-y-2 mt-5'>
+        <p>
+          ¿Ya tienes una cuenta? <Link to={'/auth/login'}>Inicia sesión</Link>
+        </p>
       </nav>
     </>
   );

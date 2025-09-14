@@ -32,11 +32,9 @@ export const ResetPasswordView = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='space-y-5 p-5 md:p-10 bg-white mt-5 rounded'
-        noValidate
-      >
+      <h2>Restablecer contraseña</h2>
+      <div className='text-[var(--border-default)] border w-full mt-2 mb-4'></div>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5' noValidate>
         <div className='flex flex-col gap-3'>
           <label htmlFor='email' className='font-bold'>
             Correo electrónico
@@ -45,7 +43,7 @@ export const ResetPasswordView = () => {
             id='email'
             type='email'
             placeholder='user@example.com'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -56,24 +54,15 @@ export const ResetPasswordView = () => {
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
-        <input
-          type='submit'
-          value='Enviar instrucciones'
-          className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Enviar instrucciones' className='btn w-full' />
       </form>
-      <nav className='flex flex-col items-center space-y-2 text-sm md:text-lg text-slate-300 mt-10'>
+      <nav className='flex flex-col items-center space-y-2 mt-5'>
         <p>
-          ¿Ya tienes una cuenta en Daem?{' '}
-          <Link to={'/auth/login'} className='text-cyan-500'>
-            Inicia sesión
-          </Link>
+          ¿Ya tienes una cuenta en Daem? <Link to={'/auth/login'}>Inicia sesión</Link>
         </p>
         <p>
           ¿Aún no tienes tu cuenta de Daem?{' '}
-          <Link to={'/auth/register'} className='text-cyan-500'>
-            Crea tu cuenta
-          </Link>
+          <Link to={'/auth/register'}>Crea tu cuenta</Link>
         </p>
       </nav>
     </>

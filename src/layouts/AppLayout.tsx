@@ -1,7 +1,7 @@
-import { Link, Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Logo, NavMenu, Spinner } from '@/components';
+import { NavMenu, Spinner } from '@/components';
 import { useAuth } from '@/hooks/useAuth';
 
 export const AppLayout = () => {
@@ -13,13 +13,8 @@ export const AppLayout = () => {
   if (data)
     return (
       <div className='flex flex-col min-h-screen w-full'>
-        <header className='bg-slate-800 py-2'>
+        <header className='bg-slate-800 py-8'>
           <div className='text-white max-w-screen-2xl mx-auto p-2 flex flex-col md:flex-row justify-between items-center w-full'>
-            <div className='flex justify-center md:me-6'>
-              <Link to='/'>
-                <Logo />
-              </Link>
-            </div>
             <NavMenu name={data.name} />
           </div>
         </header>
@@ -28,7 +23,8 @@ export const AppLayout = () => {
         </main>
         <footer className='mb-10'>
           <p className='text-center'>
-            &copy; {new Date().getFullYear()} - Daniel Pompa Pareja
+            &copy; {new Date().getFullYear()} Daem Tech Solutions. Todos los derechos
+            reservados.
           </p>
         </footer>
         <ToastContainer
