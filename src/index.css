@@ -12,6 +12,67 @@
   font-display: swap;
 }
 
-body {
-  font-family: 'Roboto', Inter, system-ui, Arial, sans-serif;
+/* Design Tokens and Base Styles */
+@layer base {
+  :root {
+    /* Text colors */
+    --color-text-primary: #111827; /* Main text */
+    --color-text-secondary: #374151; /* Secondary text */
+    --color-text-muted: #6b7280; /* Muted text */
+
+    /* Accent colors */
+    --color-accent-blue: #2563eb;
+    --color-accent-teal: #14b8a6;
+    --color-accent-indigo: #6366f1;
+
+    /* Borders */
+    --color-border-default: #e5e7eb;
+    --color-border-strong: #475569;
+  }
+
+  /* Body */
+  body {
+    font-family: 'Roboto', Inter, system-ui, Arial, sans-serif;
+    @apply leading-relaxed selection:bg-gray-700 selection:text-white bg-white;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-2xl sm:text-3xl font-bold text-[var(--color-text-primary)];
+  }
+
+  h2 {
+    @apply text-xl sm:text-2xl font-semibold text-[var(--color-text-secondary)];
+  }
+
+  h3 {
+    @apply text-lg sm:text-xl font-medium text-[var(--color-text-secondary)];
+  }
+
+  /* Text, links, buttons, inputs, labels */
+  p,
+  a,
+  button,
+  input,
+  label {
+    @apply text-sm sm:text-base text-[var(--color-text-secondary)];
+  }
+
+  /* Links */
+  a {
+    @apply text-[var(--color-accent-blue)] transition-colors;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded-md 
+           transition-colors cursor-pointer;
+  }
+
+  .form-control {
+    @apply border border-[var(--color-border-default)] rounded-md px-3 py-2 w-full 
+           focus:outline-none focus:border-[var(--color-border-strong)] 
+           focus:ring-1 focus:ring-[var(--color-border-strong)];
+  }
 }
