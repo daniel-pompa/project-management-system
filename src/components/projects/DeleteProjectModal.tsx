@@ -9,10 +9,10 @@ import {
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { checkUserPassword, deleteProject } from '@/api';
 import { CheckUserPasswordFormType } from '@/types';
 import { ErrorMessage } from '@/components';
-import { checkUserPassword, deleteProject } from '@/api';
-import { toast } from 'react-toastify';
 
 export const DeleteProjectModal = () => {
   const initialValues: CheckUserPasswordFormType = {
@@ -54,6 +54,10 @@ export const DeleteProjectModal = () => {
     },
   });
 
+  // Estado combinado para el loading
+  const isPending =
+    checkUserPasswordMutation.isPending || deleteProjectMutation.isPending;
+
   const onSubmit = async (formData: CheckUserPasswordFormType) => {
     await checkUserPasswordMutation.mutateAsync(formData);
     await deleteProjectMutation.mutateAsync(deleteProjectId);
@@ -89,14 +93,14 @@ export const DeleteProjectModal = () => {
               leaveTo='opacity-0 scale-95'
             >
               <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
-                <DialogTitle as='h2' className='text-2xl md:text-3xl font-bold my-2'>
+                <DialogTitle as='h2' className='my-2'>
                   Eliminar proyecto
                 </DialogTitle>
-                <p className='md:text-xl text-slate-600'>
+                <p>
                   Para confirmar la eliminación del proyecto, introduce tu contraseña.
                 </p>
                 <form
-                  className='mt-10 space-y-3'
+                  className='mt-6 space-y-5'
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
                 >
@@ -108,7 +112,7 @@ export const DeleteProjectModal = () => {
                       id='password'
                       type='password'
                       placeholder='Contraseña del usuario'
-                      className='w-full p-2 mb-2 border border-slate-200 rounded'
+                      className='form-control'
                       {...register('password', {
                         required: 'La contraseña es obligatoria',
                       })}
@@ -117,11 +121,15 @@ export const DeleteProjectModal = () => {
                       <ErrorMessage>{errors.password.message}</ErrorMessage>
                     )}
                   </div>
-                  <input
-                    type='submit'
-                    value='Eliminar proyecto'
-                    className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-                  />
+
+                  <div className='mt-6'>
+                    <input
+                      type='submit'
+                      value={isPending ? 'Eliminando proyecto...' : 'Eliminar proyecto'}
+                      className='btn w-full disabled:opacity-50 disabled:cursor-not-allowed'
+                      disabled={isPending}
+                    />
+                  </div>
                 </form>
               </DialogPanel>
             </TransitionChild>
