@@ -52,10 +52,10 @@ export const EditProjectForm = ({ data, projectId }: EditProjectFormProps) => {
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
             <h1>Editar proyecto</h1>
-            <p className='md:text-xl'>Completa el formulario para editar el proyecto</p>
+            <p className='md:text-lg'>Completa el formulario para editar el proyecto</p>
           </div>
-          <nav className='my-5'>
-            <Link to='/' className='btn'>
+          <nav className='mt-5 md:mt-2'>
+            <Link to='/' className='btn inline-block'>
               Volver
             </Link>
           </nav>
@@ -72,7 +72,7 @@ export const EditProjectForm = ({ data, projectId }: EditProjectFormProps) => {
           <input
             type='submit'
             value={isPending ? 'Guardando...' : 'Guardar cambios'}
-            className='btn w-full disabled:opacity-50 disabled:cursor-not-allowed'
+            className='btn w-full disabled:opacity-50 disabled:cursor-not-allowed py-2.5'
             disabled={isPending}
           />
         </form>

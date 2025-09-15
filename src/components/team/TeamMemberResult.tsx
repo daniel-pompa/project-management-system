@@ -44,7 +44,7 @@ export const TeamMemberResult = ({ user, reset }: TeamMemberResultProps) => {
         <p className='pl-6'>{user.name}</p>
         <button
           type='button'
-          className='hover:bg-slate-100 px-6 py-1 rounded transition-colors duration-300 ease-in'
+          className='bg-slate-50 hover:bg-slate-100 px-6 py-1 rounded-md transition-colors duration-300 ease-in'
           onClick={handleAddUserToProject}
         >
           Añadir

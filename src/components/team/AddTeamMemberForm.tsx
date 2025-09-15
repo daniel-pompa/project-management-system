@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { TeamMemberForm } from '@/types';
 import { findUserByEmail } from '@/api';
+import { TeamMemberForm } from '@/types';
 import { ErrorMessage, Spinner, TeamMemberResult } from '@/components';
 
 export const AddTeamMemberForm = () => {
@@ -38,12 +38,8 @@ export const AddTeamMemberForm = () => {
 
   return (
     <>
-      <form
-        className='mt-10 space-y-5'
-        onSubmit={handleSubmit(handleSearchUser)}
-        noValidate
-      >
-        <div className='flex flex-col gap-3'>
+      <form className='space-y-5' onSubmit={handleSubmit(handleSearchUser)} noValidate>
+        <div className='flex flex-col gap-3 mt-6'>
           <label htmlFor='name' className='font-bold'>
             Correo electrónico del usuario
           </label>
@@ -51,7 +47,7 @@ export const AddTeamMemberForm = () => {
             id='name'
             type='text'
             placeholder='user@example.com'
-            className='w-full p-2 border border-slate-200 rounded'
+            className='form-control'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -62,11 +58,7 @@ export const AddTeamMemberForm = () => {
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
-        <input
-          type='submit'
-          value='Buscar usuario'
-          className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Buscar usuario' className='btn w-full py-2.5' />
       </form>
       {mutation.isPending && <Spinner />}
       {mutation.error && (

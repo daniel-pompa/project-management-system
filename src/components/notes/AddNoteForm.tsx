@@ -2,8 +2,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { NoteFormData } from '@/types';
 import { createNote } from '@/api';
+import { NoteFormData } from '@/types';
 import { ErrorMessage } from '@/components';
 
 export const AddNoteForm = () => {
@@ -54,18 +54,14 @@ export const AddNoteForm = () => {
           id='content'
           type='text'
           placeholder='Contenido de la nota'
-          className='w-full p-2 border-slate-200 border rounded'
+          className='form-control'
           {...register('content', {
             required: 'El contenido de la nota es obligatorio',
           })}
         />
         {errors.content && <ErrorMessage>{errors.content.message}</ErrorMessage>}
       </div>
-      <input
-        type='submit'
-        value='Guardar nota'
-        className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-      />
+      <input type='submit' value='Guardar nota' className='btn w-full py-2.5' />
     </form>
   );
 };

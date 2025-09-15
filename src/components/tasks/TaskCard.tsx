@@ -5,8 +5,8 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import { useDraggable } from '@dnd-kit/core';
 import { toast } from 'react-toastify';
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { TaskProject } from '@/types';
 import { deleteTask } from '@/api';
+import { TaskProject } from '@/types';
 
 type TaskCardProps = {
   task: TaskProject;
@@ -74,10 +74,10 @@ export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
               <MenuItem>
                 <button
                   type='button'
-                  className='block px-3 py-1 text-sm leading-6 text-slate-900'
+                  className='block px-3 py-1 text-sm'
                   onClick={() => navigate(`${location.pathname}?view-task=${task._id}`)}
                 >
-                  Ver Tarea
+                  Ver tarea
                 </button>
               </MenuItem>
               {hasEditPermission && (
@@ -85,21 +85,21 @@ export const TaskCard = ({ task, hasEditPermission }: TaskCardProps) => {
                   <MenuItem>
                     <button
                       type='button'
-                      className='block px-3 py-1 text-sm leading-6 text-slate-900'
+                      className='block px-3 py-1 text-sm'
                       onClick={() =>
                         navigate(`${location.pathname}?edit-task=${task._id}`)
                       }
                     >
-                      Editar Tarea
+                      Editar tarea
                     </button>
                   </MenuItem>
                   <MenuItem>
                     <button
                       type='button'
-                      className='block px-3 py-1 text-sm leading-6 text-red-600'
+                      className='block px-3 py-1 text-sm text-red-600'
                       onClick={() => mutate({ projectId, taskId: task._id })}
                     >
-                      Eliminar Tarea
+                      Eliminar tarea
                     </button>
                   </MenuItem>
                 </>

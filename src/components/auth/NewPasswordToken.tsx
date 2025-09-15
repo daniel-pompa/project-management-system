@@ -12,7 +12,11 @@ type NewPasswordTokenProps = {
   setTokenValid: Dispatch<SetStateAction<boolean>>;
 };
 
-export const NewPasswordToken = ({ token, setToken, setTokenValid }: NewPasswordTokenProps) => {
+export const NewPasswordToken = ({
+  token,
+  setToken,
+  setTokenValid,
+}: NewPasswordTokenProps) => {
   const { mutate } = useMutation({
     mutationFn: verifyToken,
     onSuccess: data => {
@@ -30,14 +34,10 @@ export const NewPasswordToken = ({ token, setToken, setTokenValid }: NewPassword
 
   return (
     <>
-      <h1 className='text-xl md:text-2xl text-slate-300 text-center'>
-        Restablecer contraseña
-      </h1>
-      <p className='text-slate-300 text-center mt-5'>
-        Ingresa el código que te enviamos a tu correo electronico
-      </p>
-      <form className='space-y-5 p-5 md:p-10 bg-white mt-10 rounded'>
-        <label className='md:text-xl text-center block'>Código de 6 dígitos</label>
+      <h1 className='text-xl md:text-2xl text-center'>Restablecer contraseña</h1>
+      <p className='mt-4'>Ingresa el código que te enviamos a tu correo electronico</p>
+      <form className='space-y-5 p-5'>
+        <label className='md:text-lg text-center block'>Código de 6 dígitos</label>
         <div className='flex justify-center gap-4'>
           <PinInput value={token} onChange={onValueChange} onComplete={onComplete}>
             <PinInputField className='w-10 h-10 rounded-md border border-slate-300 placeholder-white text-center' />
@@ -50,8 +50,8 @@ export const NewPasswordToken = ({ token, setToken, setTokenValid }: NewPassword
         </div>
       </form>
 
-      <nav className='mt-10 flex flex-col space-y-4'>
-        <Link to='/auth/reset-password' className='text-slate-300 text-center'>
+      <nav className='flex flex-col space-y-4'>
+        <Link to='/auth/reset-password' className='text-center'>
           Solicitar un nuevo código
         </Link>
       </nav>

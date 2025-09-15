@@ -61,7 +61,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
           <input
             type='password'
             placeholder='Nueva contraseña'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('password', {
               required: 'La contraseña es obligatoria',
               minLength: {
@@ -81,7 +81,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
             id='confirm_password'
             type='password'
             placeholder='Repetir contraseña'
-            className='w-full p-2 border-slate-200 border rounded'
+            className='form-control'
             {...register('confirm_password', {
               required: 'La repetición de la contraseña es obligatoria',
               validate: value => value === password || 'La contraseña no coincide',
@@ -91,11 +91,7 @@ export const NewPasswordForm = ({ token }: NewPasswordFormProps) => {
             <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
           )}
         </div>
-        <input
-          type='submit'
-          value='Cambiar contraseña'
-          className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Cambiar contraseña' className='btn w-full' />
       </form>
     </>
   );

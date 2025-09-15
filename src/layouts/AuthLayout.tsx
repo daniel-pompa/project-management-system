@@ -7,14 +7,14 @@ export const AuthLayout = () => {
     <div className='flex h-screen w-full'>
       {/* Branding */}
       <div className='hidden lg:flex w-1/2 bg-gradient-to-br from-slate-950 to-slate-800 items-center justify-center'>
-        <h1 className='text-7xl text-white font-extrabold tracking-tight font-sans'>
+        <h1 className='text-6xl lg:text-7xl text-white font-sans font-extrabold tracking-tight'>
           Daem Tech Solutions
         </h1>
       </div>
 
       {/* Forms */}
-      <div className='flex w-full lg:w-1/2 items-center justify-center px-6 sm:px-12 md:px-24'>
-        <div className='border bg-white p-8 rounded-xl shadow-xl min-w-[450px]'>
+      <div className='flex w-full lg:w-1/2 items-center justify-center px-4'>
+        <div className='bg-white rounded-xl shadow-xl w-full max-w-[500px] p-6 sm:p-8'>
           <Outlet />
         </div>
       </div>

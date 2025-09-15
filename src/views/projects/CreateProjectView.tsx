@@ -42,10 +42,10 @@ export const CreateProjectView = () => {
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
             <h1>Nuevo proyecto</h1>
-            <p className='md:text-xl'>Completa el formulario para crear un proyecto</p>
+            <p className='md:text-lg'>Completa el formulario para crear un proyecto.</p>
           </div>
-          <nav className='mt-5 md:mt-3'>
-            <Link to='/' className='btn'>
+          <nav className='mt-5 md:mt-2'>
+            <Link to='/' className='btn inline-block'>
               Volver
             </Link>
           </nav>
@@ -60,7 +60,7 @@ export const CreateProjectView = () => {
           <input
             type='submit'
             value={isPending ? 'Creando proyecto...' : 'Crear proyecto'}
-            className='btn w-full disabled:opacity-50 disabled:cursor-not-allowed'
+            className='btn w-full disabled:opacity-50 disabled:cursor-not-allowed py-2.5'
             disabled={isPending}
           />
         </form>

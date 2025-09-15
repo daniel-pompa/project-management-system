@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Menu, MenuButton, MenuItem } from '@headlessui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { AiOutlineLogout } from 'react-icons/ai';
@@ -21,17 +21,29 @@ export const NavMenu = ({ name }: NavMenuProps) => {
       <Menu>
         <div className='flex space-x-4'>
           <MenuItem>
-            <Link
+            <NavLink
               to='/profile'
-              className='block md:text-xl text-slate-100 hover:text-slate-400'
+              className={({ isActive }) =>
+                `block md:text-xl ${
+                  isActive ? 'text-slate-400' : 'text-slate-100'
+                } hover:text-slate-400`
+              }
             >
               Perfil
-            </Link>
+            </NavLink>
           </MenuItem>
           <MenuItem>
-            <Link to='/' className='block md:text-xl text-slate-100 hover:text-slate-400'>
+            <NavLink
+              to='/'
+              end
+              className={({ isActive }) =>
+                `block md:text-xl ${
+                  isActive ? 'text-slate-400' : 'text-slate-100'
+                } hover:text-slate-400`
+              }
+            >
               Proyectos
-            </Link>
+            </NavLink>
           </MenuItem>
         </div>
         <div className='flex space-x-3 ms-4 md:ms-0'>

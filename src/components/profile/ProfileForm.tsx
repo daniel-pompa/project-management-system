@@ -33,10 +33,10 @@ export const ProfileForm = ({ data }: ProfileFormProps) => {
 
   return (
     <>
-      <div className='mx-auto max-w-2xl'>
+      <div className='max-w-xl mx-auto'>
         <div className='space-y-2'>
-          <h1 className='text-2xl md:text-3xl font-bold'>Mi perfil</h1>
-          <p className='md:text-xl text-slate-600'>
+          <h1>Mi perfil</h1>
+          <p className='md:text-lg'>
             Actualiza tu información completando el siguiente formulario.
           </p>
         </div>
@@ -80,11 +80,7 @@ export const ProfileForm = ({ data }: ProfileFormProps) => {
             />
             {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
-          <input
-            type='submit'
-            value='Guardar cambios'
-            className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-          />
+          <input type='submit' value='Guardar cambios' className='btn w-full' />
         </form>
       </div>
     </>

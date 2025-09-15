@@ -54,7 +54,7 @@ export const ResetPasswordView = () => {
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
-        <input type='submit' value='Enviar instrucciones' className='btn w-full' />
+        <input type='submit' value='Enviar instrucciones' className='btn w-full py-2.5' />
       </form>
       <nav className='flex flex-col items-center space-y-2 mt-5'>
         <p>

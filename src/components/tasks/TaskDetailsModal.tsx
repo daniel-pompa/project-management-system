@@ -99,21 +99,19 @@ export const TaskDetailsModal = () => {
                   leaveFrom='opacity-100 scale-100'
                   leaveTo='opacity-0 scale-95'
                 >
-                  <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow transition-all p-5 md:p-10'>
-                    <p className='text-sm md:text-lg text-slate-500 mb-1'>
-                      Creada: {formatDate(data.createdAt)}
-                    </p>
-                    <p className='text-sm md:text-lg text-slate-500'>
+                  <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle p-5 md:p-10'>
+                    <p className='text-slate-500'>Creada: {formatDate(data.createdAt)}</p>
+                    <p className='text-slate-500'>
                       Última actualización: {formatDate(data.updatedAt)}
                     </p>
-                    <DialogTitle as='h3' className='text-xl md:text-2xl font-bold my-5'>
+                    <DialogTitle as='h2' className='my-2'>
                       {data.name}
                     </DialogTitle>
-                    <p className='text-slate-500 mb-2'>{data.description}</p>
+                    <p className='mb-2'>{data.description}</p>
                     {data.lastStatusChangedBy.length ? (
                       <>
                         <p className='mt-4 mb-2 font-bold'>Historial de cambios</p>
-                        <ul className='list-decimal ml-5'>
+                        <ul className='list-decimal ml-5 text-sm sm:text-base'>
                           {data.lastStatusChangedBy.map(activityLog => (
                             <li key={activityLog._id} className='text-slate-500'>
                               {statusTranslations[activityLog.status]} -{' '}
@@ -129,7 +127,7 @@ export const TaskDetailsModal = () => {
                       </label>
                       <select
                         id='status'
-                        className='w-full p-3 border border-slate-200 rounded'
+                        className='form-control'
                         defaultValue={data.status}
                         onChange={handleStatusChange}
                       >

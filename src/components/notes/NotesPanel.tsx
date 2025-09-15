@@ -19,7 +19,7 @@ export const NotesPanel = ({ notes }: NotesPanelProps) => {
             ))}
           </>
         ) : (
-          <p className='bg-slate-100 text-slate-600 text-center p-2 rounded'>
+          <p className='bg-slate-100 text-slate-600 text-center px-6 py-4 rounded'>
             Aún no hay notas disponibles
           </p>
         )}

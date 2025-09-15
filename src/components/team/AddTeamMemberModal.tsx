@@ -49,10 +49,10 @@ export const AddTeamMemberModal = () => {
                 leaveTo='opacity-0 scale-95'
               >
                 <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
-                  <DialogTitle as='h2' className='text-xl md:text-3xl font-bold my-2'>
+                  <DialogTitle as='h2' className='my-2'>
                     Añadir colaborador al equipo
                   </DialogTitle>
-                  <p className='md:text-xl text-slate-600'>
+                  <p>
                     Busca el nuevo colaborador por su correo electrónico para añadirlo al
                     equipo.
                   </p>

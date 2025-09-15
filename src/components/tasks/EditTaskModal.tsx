@@ -10,9 +10,9 @@ import {
 } from '@headlessui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { updateTask } from '@/api';
 import { Task, TaskFormData } from '@/types';
 import { TaskForm } from '@/components';
-import { updateTask } from '@/api';
 
 type EditTaskModalProps = {
   data: Task;
@@ -87,23 +87,23 @@ export const EditTaskModal = ({ data, taskId }: EditTaskModalProps) => {
               leaveTo='opacity-0 scale-95'
             >
               <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
-                <DialogTitle as='h3' className='text-2xl md:text-3xl font-bold my-2'>
+                <DialogTitle as='h2' className='my-2'>
                   Editar tarea
                 </DialogTitle>
 
-                <p className='md:text-xl text-slate-600'>
+                <p className='text-slate-600'>
                   Completa el formulario para editar la tarea.
                 </p>
 
                 <form
-                  className='mt-10 space-y-3'
+                  className='mt-6 space-y-3'
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
                 >
                   <TaskForm errors={errors} register={register} />
                   <input
                     type='submit'
-                    className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
+                    className='btn w-full py-2.5'
                     value='Guardar cambios'
                   />
                 </form>

@@ -9,10 +9,10 @@ import {
   Transition,
   TransitionChild,
 } from '@headlessui/react';
+import { toast } from 'react-toastify';
+import { createTask } from '@/api';
 import { TaskFormData } from '@/types';
 import { TaskForm } from '@/components';
-import { createTask } from '@/api'
-import { toast } from 'react-toastify';
 
 export const AddTaskModal = () => {
   const navigate = useNavigate();
@@ -93,23 +93,21 @@ export const AddTaskModal = () => {
                 leaveTo='opacity-0 scale-95'
               >
                 <DialogPanel className='w-full max-w-xl transform overflow-hidden rounded bg-white text-left align-middle shadow-md transition-all p-5 md:p-10'>
-                  <DialogTitle as='h2' className='text-2xl md:text-3xl font-bold my-2'>
+                  <DialogTitle as='h2' className='my-2'>
                     Nueva tarea
                   </DialogTitle>
-                  <p className='md:text-xl text-slate-600'>
-                    Completa el formulario para crear una tarea.
-                  </p>
+                  <p>Completa el formulario para crear una tarea.</p>
                   {/* Task Form */}
                   <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className='mt-10 space-y-3'
+                    className='mt-6 space-y-3'
                     noValidate
                   >
                     <TaskForm errors={errors} register={register} />
                     <input
                       type='submit'
                       value='Guardar tarea'
-                      className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
+                      className='btn w-full py-2.5'
                     />
                   </form>
                 </DialogPanel>

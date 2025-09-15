@@ -115,7 +115,7 @@ export const RegisterView = () => {
             <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
           )}
         </div>
-        <input type='submit' value='Crear cuenta' className='btn w-full' />
+        <input type='submit' value='Crear cuenta' className='btn w-full py-2.5' />
       </form>
       <nav className='flex flex-col items-center space-y-2 mt-5'>
         <p>

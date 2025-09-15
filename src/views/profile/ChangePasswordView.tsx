@@ -35,16 +35,16 @@ export const ChangePasswordView = () => {
 
   return (
     <>
-      <div className='mx-auto max-w-2xl'>
+      <div className='mx-auto max-w-xl'>
         <div className='space-y-2'>
-          <h1 className='text-2xl md:text-3xl font-bold'>Cambiar contraseña</h1>
-          <p className='md:text-xl text-slate-600'>
+          <h1>Cambiar contraseña</h1>
+          <p className='md:text-lg'>
             Completa el siguiente formulario para cambiar tu contraseña.
           </p>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className='mt-10 space-y-5 bg-white shadow-md p-5 md:p-10 rounded'
+          className='mt-10 space-y-5 bg-white p-5 md:p-10 rounded-xl shadow-xl'
           noValidate
         >
           <div className='mb-5 space-y-3'>
@@ -55,7 +55,7 @@ export const ChangePasswordView = () => {
               id='current_password'
               type='password'
               placeholder='********'
-              className='w-full p-2 border-slate-200 border rounded'
+              className='form-control'
               {...register('current_password', {
                 required: 'La contraseña actual es obligatoria',
               })}
@@ -72,7 +72,7 @@ export const ChangePasswordView = () => {
               id='password'
               type='password'
               placeholder='********'
-              className='w-full p-2 border-slate-200 border rounded'
+              className='form-control'
               {...register('password', {
                 required: 'La contraseña es obligatoria',
                 minLength: {
@@ -92,7 +92,7 @@ export const ChangePasswordView = () => {
               id='confirm_password'
               type='password'
               placeholder='********'
-              className='w-full p-3  border border-gray-200'
+              className='form-control'
               {...register('confirm_password', {
                 required: 'Este campo es obligatorio',
                 validate: value => value === password || 'Las contraseñas no coinciden',
@@ -102,11 +102,7 @@ export const ChangePasswordView = () => {
               <ErrorMessage>{errors.confirm_password.message}</ErrorMessage>
             )}
           </div>
-          <input
-            type='submit'
-            value='Cambiar contraseña'
-            className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors cursor-pointer w-full'
-          />
+          <input type='submit' value='Cambiar contraseña' className='btn w-full' />
         </form>
       </div>
     </>

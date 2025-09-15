@@ -26,16 +26,11 @@ export const DashboardView = () => {
       <>
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
-            <h1 className='text-2xl md:text-3xl font-bold'>Proyectos</h1>
-            <p className='md:text-xl text-slate-600'>
-              Gestiona y administra tus proyectos.
-            </p>
+            <h1>Proyectos</h1>
+            <p className='md:text-lg'>Gestiona y administra tus proyectos.</p>
           </div>
           <nav className='mt-5 md:mt-3'>
-            <Link
-              to='/projects/create'
-              className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-2 rounded transition-colors'
-            >
+            <Link to='/projects/create' className='btn inline-block'>
               Nuevo proyecto
             </Link>
           </nav>
@@ -46,7 +41,7 @@ export const DashboardView = () => {
             data.map(project => (
               <div
                 key={project._id}
-                className='flex justify-between items-center bg-white p-4 rounded shadow-md '
+                className='flex justify-between items-center bg-white p-4 rounded shadow-md relative'
               >
                 <div className='space-y-2 w-full h-full'>
                   {/* Project info */}
@@ -62,14 +57,17 @@ export const DashboardView = () => {
                       </p>
                     )}
                   </div>
-                  <Link to={`/projects/${project._id}`} className='text-xl font-bold'>
+                  <Link
+                    to={`/projects/${project._id}`}
+                    className='text-xl text-[var(--color-primary)] font-bold'
+                  >
                     {project.name}
                   </Link>
                   <p className='text-slate-500 font-bold'>Cliente: {project.client}</p>
                   <p className='text-slate-500'>{project.description}</p>
                 </div>
                 {/* Menu buttons container */}
-                <Menu as='div' className='relative'>
+                <Menu as='div' className='absolute top-4 right-4'>
                   <MenuButton>
                     <BiDotsVerticalRounded className='h-6 w-6' />
                   </MenuButton>
@@ -82,11 +80,11 @@ export const DashboardView = () => {
                     leaveFrom='transform opacity-100 scale-100'
                     leaveTo='transform opacity-0 scale-95'
                   >
-                    <MenuItems className='absolute top-4 right-0 z-10 mt-2 w-56 rounded bg-white py-2 shadow-md ring-1 ring-gray-900/5 focus:outline-none'>
+                    <MenuItems className='absolute top-4 right-0 z-10 mt-2 w-56 rounded bg-white py-2 shadow-md ring-2 ring-slate-900/5'>
                       <MenuItem>
                         <Link
                           to={`/projects/${project._id}`}
-                          className='block px-3 py-1 text-sm leading-6'
+                          className='block px-3 py-1 text-sm text-[var(--color-text-primary)]'
                         >
                           Ver proyecto
                         </Link>
@@ -97,7 +95,7 @@ export const DashboardView = () => {
                           <MenuItem>
                             <Link
                               to={`/projects/${project._id}/edit`}
-                              className='block px-3 py-1 text-sm leading-6'
+                              className='block px-3 py-1 text-sm text-[var(--color-text-primary)]'
                             >
                               Editar proyecto
                             </Link>
@@ -105,7 +103,7 @@ export const DashboardView = () => {
                           <MenuItem>
                             <button
                               type='button'
-                              className='block px-3 py-1 text-sm leading-6 text-red-600'
+                              className='block px-3 py-1 text-sm text-red-600'
                               onClick={() =>
                                 navigate(
                                   `${location.pathname}?delete-project=${project._id}`
@@ -125,10 +123,7 @@ export const DashboardView = () => {
           ) : (
             <p>
               Actualmente no hay proyectos.{' '}
-              <Link
-                to='/projects/create'
-                className='text-blue-600 font-semibold hover:underline'
-              >
+              <Link to='/projects/create' className='font-semibold hover:underline'>
                 Haz clic aquí para crear uno.
               </Link>
             </p>

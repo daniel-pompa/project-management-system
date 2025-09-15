@@ -2,9 +2,9 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { requestConfirmationCode } from '@/api';
 import { RequestConfirmationCodeForm } from '@/types';
 import { ErrorMessage } from '@/components';
-import { requestConfirmationCode } from '@/api';
 
 export const RequestNewCodeView = () => {
   const initialValues: RequestConfirmationCodeForm = {
@@ -33,18 +33,12 @@ export const RequestNewCodeView = () => {
 
   return (
     <>
-      <h1 className='text-xl md:text-2xl text-slate-300 text-center'>
-        Solicitar código de confirmación
-      </h1>
-      <p className='text-slate-300 text-center mt-5'>
+      <h2>Solicitar código de confirmación</h2>
+      <p className='mt-4'>
         Ingresa tu correo electrónico para solicitar un nuevo código.
       </p>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className='space-y-5 p-5 md:p-10 bg-white mt-10 rounded'
-        noValidate
-      >
-        <div className='flex flex-col gap-3'>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5' noValidate>
+        <div className='flex flex-col gap-3 mt-6'>
           <label htmlFor='email' className='font-bold'>
             Correo electrónico
           </label>
@@ -52,7 +46,7 @@ export const RequestNewCodeView = () => {
             id='email'
             type='email'
             placeholder='user@example.com'
-            className='w-full p-3 border border-slate-200 rounded'
+            className='form-control'
             {...register('email', {
               required: 'El correo electrónico es obligatorio',
               pattern: {
@@ -63,24 +57,14 @@ export const RequestNewCodeView = () => {
           />
           {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </div>
-        <input
-          type='submit'
-          value='Enviar código'
-          className='bg-slate-800 hover:bg-slate-900 text-slate-300 px-3 py-2 rounded transition-colors cursor-pointer w-full'
-        />
+        <input type='submit' value='Enviar código' className='btn w-full' />
       </form>
-      <nav className='mt-10 flex flex-col items-center gap-2 text-sm md:text-lg text-slate-300'>
+      <nav className='flex flex-col items-center space-y-2 mt-5'>
         <p>
-          ¿Ya tienes cuenta?{' '}
-          <Link to='/auth/login' className='text-cyan-500'>
-            Iniciar sesión
-          </Link>
+          ¿Ya tienes cuenta? <Link to='/auth/login'>Iniciar sesión</Link>
         </p>
         <p>
-          ¿Olvidaste tu contraseña?{' '}
-          <Link to='/auth/forgot-password' className='text-cyan-500'>
-            Restablecer
-          </Link>
+          ¿Olvidaste tu contraseña? <Link to='/auth/forgot-password'>Restablecer</Link>
         </p>
       </nav>
     </>

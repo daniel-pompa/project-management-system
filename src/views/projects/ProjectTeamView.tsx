@@ -39,31 +39,29 @@ export const ProjectTeamView = () => {
       <>
         <div className='flex flex-col md:flex-row md:justify-between'>
           <div className='space-y-2'>
-            <h1 className='text-2xl md:text-3xl font-bold'>
-              Gestión del equipo de proyecto
-            </h1>
-            <p className='md:text-xl text-slate-600'>
+            <h1>Gestión del equipo de proyecto</h1>
+            <p className='md:text-lg'>
               Administra los miembros del equipo de trabajo para este proyecto.
             </p>
           </div>
           <nav className='mt-5 md:mt-3'>
             <button
               type='button'
-              className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-1 rounded transition-colors'
+              className='btn min-w-36'
               onClick={() => navigate(`${location.pathname}?add-member=true`)}
             >
               Añadir colaborador
             </button>
             <Link
               to={`/projects/${projectId}`}
-              className='bg-slate-800 hover:bg-slate-900 text-white px-3 py-1 rounded transition-colors ml-3 md:mt-2 inline-block'
+              className='btn min-w-36 ml-3 md:mt-2 text-center inline-block'
             >
               Proyecto
             </Link>
           </nav>
         </div>
         {/* Current team members */}
-        <h2 className='text-xl md:text-2xl font-bold my-10'>Miembros actuales</h2>
+        <h2 className='mt-8'>Miembros actuales</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10'>
           {data.length ? (
             data.map(member => (
@@ -93,7 +91,7 @@ export const ProjectTeamView = () => {
                       <MenuItem>
                         <button
                           type='button'
-                          className='block px-3 py-1 text-sm leading-6 text-red-600'
+                          className='block px-3 py-1 text-sm text-red-600'
                           onClick={() => mutate({ projectId, userId: member._id })}
                         >
                           Eliminar del proyecto
@@ -105,7 +103,7 @@ export const ProjectTeamView = () => {
               </div>
             ))
           ) : (
-            <p className='text-slate-600 font-bold'>No hay miembros en este equipo</p>
+            <p className='font-bold'>No hay miembros en este equipo</p>
           )}
         </div>
         <AddTeamMemberModal />
